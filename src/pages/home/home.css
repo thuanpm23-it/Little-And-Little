@@ -1,0 +1,15 @@
+.wrapper {
+  width: 1920px;
+  height: 1110px;
+  background-color: #f9b842;
+  border-radius: 20px;
+}
+
+.home-main {
+  width: 1790px;
+  height: 957px;
+  margin: -30px auto 0; /* Điều chỉnh margin-top để .home-main nhích lên */
+  background: linear-gradient(#ff8b2c, #ff8d2a, #ffa413, #ffb105, #ffb600);
+
+  border-radius: 20px;
+}
