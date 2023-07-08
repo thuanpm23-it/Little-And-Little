@@ -1,0 +1,11 @@
+div input {
+  display: flex;
+  padding-left: 15px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-color: #fff;
+  border-radius: 16px;
+  background: var(--w, #fff);
+
+  box-shadow: -1px 3px 3px 0px rgba(178, 91, 11, 0.5) inset;
+}
