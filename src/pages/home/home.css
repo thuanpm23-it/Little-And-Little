@@ -1,6 +1,6 @@
 .wrapper {
   width: 1920px;
-  height: 1110px;
+  height: 1104px;
   background-color: #f9b842;
   border-radius: 20px;
 }
@@ -8,7 +8,7 @@
 .home-main {
   width: 1790px;
   height: 957px;
-  margin: -30px auto 0; /* Điều chỉnh margin-top để .home-main nhích lên */
+  margin: -30px auto 0;
   background: linear-gradient(#ff8b2c, #ff8d2a, #ffa413, #ffb105, #ffb600);
 
   border-radius: 20px;
@@ -44,6 +44,10 @@
   line-height: 100px;
 }
 
+/* .home-text {
+  padding-right: 88px;
+} */
+
 .home-main-main-one {
   display: flex;
   justify-content: center;
@@ -52,8 +56,10 @@
   height: 584.318px;
   fill: #fde8b3;
   background-color: #fde8b3;
-  margin-left: 132px;
+  margin-left: 133px;
   border-radius: 30px;
+  /* position: relative;
+  z-index: 2; */
 }
 
 .home-main-children-one {
@@ -64,6 +70,9 @@
   border-width: 3px;
   border-color: rgb(248, 97, 97);
   border-radius: 30px;
+  /* text-align: left; */
+  /* position: relative;
+  z-index: 3; */
 }
 
 .home-main-main-two {
@@ -76,6 +85,7 @@
   background-color: #fde8b3;
   margin-left: 44px;
   border-radius: 30px;
+  z-index: 1;
 }
 
 .home-main-children-two {
@@ -155,4 +165,113 @@
 .home-button {
   margin-top: 24px;
   margin-left: 73px;
+}
+
+.home-text-children-one {
+  margin-top: 35px;
+  margin-left: 56px;
+
+  color: var(--text, #23221f);
+
+  /* 20 medium */
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  opacity: 0.699999988079071;
+}
+
+.row-text-one {
+  display: flex;
+  align-items: center;
+  margin-bottom: -20px;
+}
+.row-text-one img {
+  width: 37px;
+  height: 40px;
+}
+.row-text-one p {
+  color: var(--text, #23221f);
+
+  /* 24 bold */
+  font-family: Montserrat;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  opacity: 0.800000011920929;
+  margin-left: 5px;
+}
+
+.home-text-children-two {
+  margin-left: 115px;
+}
+
+.home-picture-1 {
+  width: 144px;
+  height: 205px;
+  margin-top: 109px;
+  /* margin-left: 88px; */
+  margin-bottom: -25px;
+}
+
+.home-picture-2 {
+  width: 117px;
+  height: 174px;
+  margin-top: 20px;
+  margin-left: 78px;
+}
+
+.home-picture-3 {
+  width: 788px;
+  height: 443px;
+  margin-bottom: -120px;
+  margin-top: -50px;
+}
+
+.home-picture-4 {
+  width: 488px;
+  height: 510px;
+  /* margin-top: -415px;
+  margin-left: -70px; */
+  position: absolute;
+  top: 80%;
+  left: 0%;
+  z-index: 1;
+}
+
+.home-picture-5 {
+  width: 166px;
+  height: 237px;
+
+  position: absolute; /* Thêm thuộc tính position absolute */
+  left: 112%;
+  bottom: -400px;
+}
+
+.home-picture-6 {
+  width: 198px;
+  height: 283px;
+
+  position: absolute; /* Thêm thuộc tính position absolute */
+  left: 116.4%;
+}
+.home-picture-7 {
+  width: 147.368px;
+  height: 210px;
+
+  position: absolute; /* Thêm thuộc tính position absolute */
+  /* left: 100%; */
+  left: 1.5%;
+  top: 45%;
+}
+
+.home-picture-8 {
+  width: 110px;
+  height: 157px;
+
+  position: absolute; /* Thêm thuộc tính position absolute */
+  left: 50%;
+  bottom: -445px;
 }
