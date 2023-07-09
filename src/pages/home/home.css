@@ -1,9 +1,9 @@
-.wrapper {
+/* .wrapper {
   width: 1920px;
   height: 1104px;
   background-color: #f9b842;
   border-radius: 20px;
-}
+} */
 
 .home-main {
   width: 1790px;
@@ -236,7 +236,7 @@
   /* margin-top: -415px;
   margin-left: -70px; */
   position: absolute;
-  top: 80%;
+  top: 73%;
   left: 0%;
   z-index: 1;
 }
@@ -247,7 +247,7 @@
 
   position: absolute; /* Thêm thuộc tính position absolute */
   left: 112%;
-  bottom: -400px;
+  bottom: -360px;
 }
 
 .home-picture-6 {
@@ -273,5 +273,5 @@
 
   position: absolute; /* Thêm thuộc tính position absolute */
   left: 50%;
-  bottom: -445px;
+  bottom: -387px;
 }
