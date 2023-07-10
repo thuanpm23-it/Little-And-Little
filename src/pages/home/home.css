@@ -1,12 +1,4 @@
-/* .wrapper {
-  width: 1920px;
-  height: 1104px;
-  background-color: #f9b842;
-  border-radius: 20px;
-} */
-
 .home-main {
-  /* width: 1790px; */
   width: 91%;
   height: 957px;
   margin: -30px auto 0;
@@ -22,24 +14,17 @@
 }
 
 .home-logo {
-  /* padding: 83px 16px 59px 132px;
-  width: 181px;
-  height: 145px; */
   padding-right: 5px;
 }
 
 .home-text-one {
   color: var(--w, #fff);
   font-family: iCiel Koni;
-  /* font-size: 72px; */
+
   font-style: normal;
   font-weight: 900;
   font-size: 62px;
   line-height: 80px;
-
-  /* line-height: 100px; */
-  /* padding-top: 62px;
-  margin-bottom: -15px; */
 }
 
 .home-text-two {
@@ -48,33 +33,27 @@
 
   font-style: normal;
   font-weight: 900;
-  /* line-height: 100px;font-size: 72px; */
+
   font-size: 62px;
   line-height: 80px;
 }
-
-/* .home-text {
-  padding-right: 88px;
-} */
 
 .home-main-main-one {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 950px; */
+
   width: 55%;
   height: 584.318px;
   fill: #fde8b3;
   background-color: #fde8b3;
-  /* margin-left: 133px; */
+
   border-radius: 30px;
-  /* position: relative;
-  z-index: 2; */
+
   z-index: 4;
 }
 
 .home-main-children-one {
-  /* width: 926px; */
   width: 97%;
   height: 559px;
   border-style: dashed;
@@ -85,9 +64,6 @@
   align-items: center;
   justify-content: center;
 
-  /* text-align: left; */
-  /* position: relative;
-  z-index: 3; */
   z-index: 5;
   text-align: start;
 }
@@ -101,15 +77,20 @@
   height: 584.073px;
   fill: #fde8b3;
   background-color: #fde8b3;
-  margin-left: 25px;
+  /* margin-left: 25px; */
   border-radius: 30px;
   z-index: 1;
 }
 
+.home-vector {
+  margin-left: -40px;
+  margin-right: -70px;
+  margin-bottom: -3px;
+}
+
 .home-main-children-two {
   justify-content: center;
-  /* align-items: center; */
-  /* width: 511.979px; */
+
   width: 94%;
   height: 558.99px;
   border-style: dashed;
@@ -129,7 +110,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 288px; */
+
   width: 60%;
   height: 80px;
   fill: linear-gradient(180deg, #ff000a 0%, #c2000b 100%);
@@ -144,7 +125,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 275px; */
+
   width: 96%;
   height: 71px;
   border-style: dashed;
@@ -203,8 +184,7 @@
 
   font-style: normal;
   font-weight: 500;
-  /* line-height: 30px;
-  font-size: 20px; */
+
   font-size: 18px;
   line-height: 25px;
   opacity: 0.699999988079071;
@@ -216,8 +196,6 @@
   margin-bottom: -20px;
 }
 .row-text-one img {
-  /* width: 37px;
-  height: 40px; */
   width: 32px;
   height: 35px;
 }
@@ -244,19 +222,12 @@
 .home-picture-1 {
   position: absolute; /* Thêm thuộc tính position absolute */
   left: 40%;
-  bottom: 265px;
+  /* bottom: 265px; */
+  bottom: 325px;
   z-index: 3;
 }
 
 .home-picture-2 {
-  /* width: 117px;
-  height: 174px;
-  margin-top: 20px;
-  margin-left: 78px; */
-  /* width: 488px;
-  height: 510px; */
-  /* margin-top: -415px;
-  margin-left: -70px; */
   position: absolute;
   top: 10%;
   left: 50%;
@@ -264,54 +235,36 @@
 }
 
 .home-picture-3 {
-  /* width: 788px;
-  height: 443px;
-  margin-bottom: -120px;
-  margin-top: -50px; */
   width: 600px;
   height: 400px;
   position: absolute;
   left: 49%;
   /* bottom: -10px; */
-  bottom: 31%;
+  /* bottom: 31%; */
+  bottom: 36%;
 }
 
 .home-picture-4 {
-  /* width: 488px;
-  height: 510px; */
-  /* margin-top: -415px;
-  margin-left: -70px; */
   position: absolute;
-  top: 80%;
+  /* top: 80%; */
+  top: 72%;
   left: -50px;
   z-index: 6;
 }
 
 .home-picture-5 {
-  /* width: 166px;
-  height: 237px; */
-
   position: absolute; /* Thêm thuộc tính position absolute */
   left: 88%;
-  bottom: -400px;
+  /* bottom: -400px; */
+  bottom: -350px;
 }
 
 .home-picture-6 {
-  /* width: 198px;
-  height: 283px; */
-
   position: absolute; /* Thêm thuộc tính position absolute */
   left: 88.9%;
   top: 60%;
 }
 .home-picture-7 {
-  /* width: 147.368px;
-  height: 210px; */
-  /* width: 10%;
-  height: 70%; */
-  /* width: 107px;
-  height: 170px; */
-
   position: absolute; /* Thêm thuộc tính position absolute */
   /* left: 100%; */
   left: 2%;
@@ -322,20 +275,15 @@
   width: 85%;
   height: 85%;
 }
-/* .home-picture-6 img {
-  width: 90%;
-  height: 90%;
-} */
+
 .home-picture-5 img {
   width: 85%;
   height: 85%;
 }
 
 .home-picture-8 {
-  /* width: 110px;
-  height: 157px; */
-
   position: absolute; /* Thêm thuộc tính position absolute */
   left: 40%;
-  bottom: -435px;
+  /* bottom: -435px; */
+  bottom: -378px;
 }

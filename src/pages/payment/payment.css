@@ -37,6 +37,12 @@
   border-radius: 30px;
 }
 
+.payment-vector {
+  margin-right: -70px;
+  margin-left: -40px;
+  margin-bottom: -3px;
+}
+
 .payment-main-children-one {
   width: 97%;
   height: 559px;
@@ -58,7 +64,7 @@
   height: 584.073px;
   fill: #fde8b3;
   background-color: #fde8b3;
-  margin-left: 25px;
+  /* margin-left: -25px; */
   border-radius: 30px;
 }
 

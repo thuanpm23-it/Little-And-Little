@@ -36,41 +36,47 @@ const ContactPage: React.FC = () => {
 
             <div className="contact-text-children-two">
               <div className="input-box">
-                <div className="input-box-row-1">
-                  <div className="contact-input-col-1">
-                    <Input placeholder="Tên" width="105%" padding="15px" />
+                <form>
+                  <div className="input-box-row-1">
+                    <div className="contact-input-col-1">
+                      <Input placeholder="Tên" width="105%" padding="15px" />
+                    </div>
+                    <div className="contact-input-col-2">
+                      <Input placeholder="Email" width="202%" padding="15px" />
+                    </div>
                   </div>
-                  <div className="contact-input-col-2">
-                    <Input placeholder="Email" width="202%" padding="15px" />
+                  <div className="input-box-row-2">
+                    <div className="contact-input-col-1">
+                      <Input
+                        placeholder="Số điện thoại "
+                        width="105%"
+                        padding="15px"
+                      />
+                    </div>
+                    <div className="contact-input-col-2">
+                      <Input
+                        placeholder="Địa chỉ"
+                        width="202%"
+                        padding="15px"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="input-box-row-2">
-                  <div className="contact-input-col-1">
-                    <Input
-                      placeholder="Số điện thoại "
-                      width="105%"
-                      padding="15px"
+                  <div className="textarea-box">
+                    <TextArea rows={10} cols={88} placeholder="Lời nhắn" />
+                  </div>
+                  <div className="contact-button">
+                    <Button
+                      label="Gửi liên hệ"
+                      width="70%"
+                      height="61px"
+                      fontSize="28px"
+                      fontFamily="iCiel Koni"
+                      fontWeight="900"
+                      lineHeight="normal"
+                      color="#fff"
                     />
                   </div>
-                  <div className="contact-input-col-2">
-                    <Input placeholder="Địa chỉ" width="202%" padding="15px" />
-                  </div>
-                </div>
-                <div className="textarea-box">
-                  <TextArea rows={10} cols={88} placeholder="Lời nhắn" />
-                </div>
-                <div className="contact-button">
-                  <Button
-                    label="Gửi liên hệ"
-                    width="70%"
-                    height="61px"
-                    fontSize="28px"
-                    fontFamily="iCiel Koni"
-                    fontWeight="900"
-                    lineHeight="normal"
-                    color="#fff"
-                  />
-                </div>
+                </form>
               </div>
             </div>
           </div>
