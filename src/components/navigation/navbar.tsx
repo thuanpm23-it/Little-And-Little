@@ -19,7 +19,7 @@ const NavBar: React.FC = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/" className="header-top">
+          <NavLink to="/event" className="header-top">
             Sự kiện
           </NavLink>
         </li>
@@ -33,9 +33,7 @@ const NavBar: React.FC = () => {
             <i className="header-icon">
               <img src={icon} alt="icon" />
             </i>
-            <NavLink to="/" className="header-top">
-              0123456789
-            </NavLink>
+            <i className="header-top">0123456789</i>
           </div>
         </li>
       </ul>

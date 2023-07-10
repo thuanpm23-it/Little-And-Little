@@ -6,8 +6,9 @@
 } */
 
 .contact-main {
-  width: 1790px;
-  height: 957px;
+  /* width: 1790px; */
+  width: 91%;
+  height: 910px;
   margin: -30px auto 0;
   background: linear-gradient(#ff8b2c, #ff8d2a, #ffa413, #ffb105, #ffb600);
 
@@ -23,10 +24,10 @@
 
   /* Header */
   font-family: iCiel Koni;
-  font-size: 96px;
+  font-size: 80px;
   font-style: normal;
   font-weight: 900;
-  line-height: 100px;
+  line-height: 80px;
   padding-top: 70px;
   margin-bottom: 50px;
 }
@@ -35,16 +36,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 950px;
+  /* width: 950px; */
+  width: 80%;
   height: 630px;
   fill: #fde8b3;
   background-color: #fde8b3;
-  margin-left: 218px;
+  margin-left: 12%;
+
   border-radius: 30px;
 }
 
 .contact-main-children-one {
-  width: 926px;
+  /* width: 926px; */
+  width: 97%;
   height: 606px;
   border-style: dashed;
   background-color: #fff6d4;
@@ -59,32 +63,32 @@
 }
 
 .contact-text-children-one {
-  margin-top: 35px;
-  margin-left: 68px;
-  margin-right: 10px;
+  margin-top: 25px;
+  margin-left: 40px;
+  margin-right: 25px;
 
   color: var(--text, #23221f);
 
   /* 20 medium */
   font-family: "Montserrat";
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
-  line-height: 30px;
+  line-height: 25px;
   opacity: 0.699999988079071;
 }
 
 .contact-picture-4 {
-  width: 464px;
-  height: 594px;
+  /* width: 464px;
+  height: 594px; */
   margin-top: -605px;
-  margin-left: -75px;
+  margin-left: -125px;
   position: absolute;
 }
 
 .input-box {
-  margin-left: 68px;
-  margin-top: 35px;
+  margin-top: 25px;
+  margin-left: 40px;
 }
 
 .input-box-row-1 {
@@ -99,7 +103,7 @@
 }
 
 .contact-input-col-2 {
-  margin-left: 24px;
+  margin-left: 8%;
 }
 
 .input-box-row-2 {
@@ -109,19 +113,19 @@
 }
 
 .contact-button {
-  padding-top: 40px;
-  padding-left: 220px;
+  padding-top: 7%;
+  padding-left: 20%;
 }
 
 .contact-main-main-two {
-  margin-left: 30px;
+  margin-left: 2%;
 }
 
 .contact-main-children-two {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 539px;
+  width: 85%;
   height: 189px;
   fill: #fde8b3;
   background-color: #fde8b3;
@@ -130,7 +134,7 @@
 }
 
 .contact-main-children-two-1 {
-  width: 515px;
+  width: 94%;
   height: 165px;
   border-style: dashed;
   background-color: #fff6d4;
@@ -144,17 +148,18 @@
 }
 
 .contact-img {
-  margin-left: 36px;
-  margin-right: 24px;
+  margin-left: 30px;
+  margin-right: 15px;
 }
 
 .contact-text-1 {
   color: #12265a;
   font-family: Montserrat;
-  font-size: 24px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  margin-bottom: -10px;
 }
 
 .contact-text-2 {
@@ -162,7 +167,7 @@
 
   /* 18 medium */
   font-family: Montserrat;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 26px;

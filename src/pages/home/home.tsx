@@ -33,14 +33,13 @@ const HomePage: React.FC = () => {
         <div className="home-picture-1">
           <img src={Picture4} alt="Picture4" />
         </div>
-        <div className="home-picture-2">
+        {/* <div className="home-picture-2">
           <img src={Picture5} alt="Picture5" />
-        </div>
+        </div> */}
         <div className="home-picture-3">
           <img src={Picture1} alt="Picture1" />
         </div>
       </div>
-
       <div className="home-main-main">
         <div className="home-main-main-one">
           <div className="home-main-children-one">
@@ -87,7 +86,7 @@ const HomePage: React.FC = () => {
               <div className="home-input">
                 <Input
                   placeholder="Loại gói"
-                  width="380px"
+                  width="75%"
                   padding="15px 0 15px 15px"
                 />
               </div>
@@ -95,14 +94,14 @@ const HomePage: React.FC = () => {
                 <div className="home-input-col-1">
                   <Input
                     placeholder="Số lượng vé"
-                    width="132px"
+                    width="102px"
                     padding="15px 0 15px 15px"
                   />
                 </div>
                 <div className="home-input-col-2">
                   <Input
                     placeholder="Ngày sử dụng"
-                    width="206px"
+                    width="90%"
                     padding="15px 0 15px 15px"
                   />
                 </div>
@@ -110,21 +109,21 @@ const HomePage: React.FC = () => {
               <div className="home-input">
                 <Input
                   placeholder="Họ và tên"
-                  width="448px"
+                  width="90%"
                   padding="20px 0 20px 15px"
                 />
               </div>
               <div className="home-input">
                 <Input
                   placeholder="Số điện thoại"
-                  width="448px"
+                  width="90%"
                   padding="20px 0 20px 15px"
                 />
               </div>
               <div className="home-input">
                 <Input
                   placeholder="Địa chỉ email"
-                  width="448px"
+                  width="90%"
                   padding="20px 0 20px 15px"
                 />
               </div>
@@ -132,7 +131,7 @@ const HomePage: React.FC = () => {
             <div className="home-button">
               <Button
                 label="Đặt vé"
-                width="368px"
+                width="85%"
                 height="61px"
                 fontSize="28px"
                 fontFamily="iCiel Koni"

@@ -19,7 +19,7 @@ const ContactPage: React.FC = () => {
     <div className="contact-main">
       <div className="contact-main-top">
         <div className="contact-text">
-          <div className="contact-text-one">LIÊN HỆ</div>
+          <div className="contact-text-one">Liên hệ</div>
         </div>
       </div>
 
@@ -38,31 +38,31 @@ const ContactPage: React.FC = () => {
               <div className="input-box">
                 <div className="input-box-row-1">
                   <div className="contact-input-col-1">
-                    <Input placeholder="Tên" width="260px" padding="15px" />
+                    <Input placeholder="Tên" width="105%" padding="15px" />
                   </div>
                   <div className="contact-input-col-2">
-                    <Input placeholder="Email" width="470px" padding="15px" />
+                    <Input placeholder="Email" width="202%" padding="15px" />
                   </div>
                 </div>
                 <div className="input-box-row-2">
                   <div className="contact-input-col-1">
                     <Input
                       placeholder="Số điện thoại "
-                      width="260px"
+                      width="105%"
                       padding="15px"
                     />
                   </div>
                   <div className="contact-input-col-2">
-                    <Input placeholder="Địa chỉ" width="470px" padding="15px" />
+                    <Input placeholder="Địa chỉ" width="202%" padding="15px" />
                   </div>
                 </div>
                 <div className="textarea-box">
-                  <TextArea rows={10} cols={107} placeholder="Lời nhắn" />
+                  <TextArea rows={10} cols={88} placeholder="Lời nhắn" />
                 </div>
                 <div className="contact-button">
                   <Button
                     label="Gửi liên hệ"
-                    width="368px"
+                    width="70%"
                     height="61px"
                     fontSize="28px"
                     fontFamily="iCiel Koni"

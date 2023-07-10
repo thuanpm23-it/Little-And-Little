@@ -1,6 +1,10 @@
 .wrapper {
-  width: 1920px;
+  /* width: 1920px; */
   height: 1104px;
   background-color: #f9b842;
   border-radius: 20px;
 }
+/* 
+.navbar-wrapper {
+  z-index: 8;
+} */
