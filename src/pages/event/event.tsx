@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../event/event.css";
-import ImgEvent from "/selfLearning/InternReact/little-little/src/images/eventimg.png";
-import IconEvent from "/selfLearning/InternReact/little-little/src/images/calendar.png";
-import Button from "../../components/button/button";
 import EventCard from "../../components/card/card";
+import { CaretRightFilled, CaretLeftFilled } from "@ant-design/icons";
 
 const EventPage: React.FC = () => {
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleScrollLeft = () => {
+    if (cardContainerRef.current) {
+      cardContainerRef.current.scrollLeft -=
+        cardContainerRef.current.offsetWidth * 4; // Di chuyển với khoảng cách bằng 4 EventCard
+    }
+  };
+
+  const handleScrollRight = () => {
+    if (cardContainerRef.current) {
+      cardContainerRef.current.scrollLeft +=
+        cardContainerRef.current.offsetWidth * 4; // Di chuyển với khoảng cách bằng 4 EventCard
+    }
+  };
+
   return (
     <div className="event-main">
       <div className="event-main-top">
@@ -15,10 +29,18 @@ const EventPage: React.FC = () => {
       </div>
       <div className="event-main-container">
         <div className="event-main-col">
-          <EventCard />
-          <EventCard />
-          <EventCard />
-          <EventCard />
+          <div className="care-left" onClick={handleScrollLeft}>
+            <CaretLeftFilled />
+          </div>
+          <div className="card-main" ref={cardContainerRef}>
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
+          </div>
+          <div className="care-right" onClick={handleScrollRight}>
+            <CaretRightFilled />
+          </div>
         </div>
       </div>
     </div>
