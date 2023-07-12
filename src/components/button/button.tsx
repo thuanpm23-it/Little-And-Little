@@ -11,6 +11,7 @@ interface ButtonProps {
   color?: string;
   lineHeight?: string;
   type?: "button" | "submit" | "reset";
+  onClick?: () => void; // Thêm onClick vào ButtonProps
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -23,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   lineHeight,
   color,
   type,
+  onClick, // Nhận onClick từ props
 }) => {
   const buttonStyle: React.CSSProperties = {
     width,
@@ -35,7 +37,9 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button style={buttonStyle} type={type}>
+    <button style={buttonStyle} type={type} onClick={onClick}>
+      {" "}
+      {/* Sử dụng onClick từ props */}
       {label}
     </button>
   );

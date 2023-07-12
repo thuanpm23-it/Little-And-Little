@@ -1,15 +1,13 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
+import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyADaFeqqNmT-9hwquDxY6Nsj7SYMphlxrc",
+  authDomain: "little-and-little-6a2f9.firebaseapp.com",
+  projectId: "little-and-little-6a2f9",
+  storageBucket: "little-and-little-6a2f9.appspot.com",
+  messagingSenderId: "32171125707",
+  appId: "1:32171125707:web:3b8dfc2bb2fb67d138244e",
 };
 
-firebase.initializeApp(firebaseConfig);
-
-// export default firebase.database();
+const app = initializeApp(firebaseConfig);
+export default app;

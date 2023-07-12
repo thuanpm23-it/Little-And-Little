@@ -6,6 +6,7 @@ import EventPage from "../pages/event/event";
 import PaymentPage from "../pages/payment/payment";
 import EventDetailPage from "../pages/eventdetail/eventdetail";
 import PaySuccess from "../pages/paysuccess/paysuccess";
+import PageNotFound from "../pages/404/PageNotFound";
 
 const Routers: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Routers: React.FC = () => {
       <Route path="payment" element={<PaymentPage />} />
       <Route path="event/:id" element={<EventDetailPage />} />
       <Route path="success" element={<PaySuccess />} />
+      <Route path="/*" element={<PageNotFound />} />
     </Routes>
   );
 };

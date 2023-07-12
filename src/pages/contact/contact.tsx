@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../contact/contact.css";
 import NavBar from "../../components/navigation/navbar";
 import Avatar from "/selfLearning/InternReact/little-little/src/images/avatar2.png";
@@ -8,8 +8,41 @@ import TextArea from "../../components/textarea/texarea";
 import Telephone from "/selfLearning/InternReact/little-little/src/images/telephone.png";
 import Waze from "/selfLearning/InternReact/little-little/src/images/waze.png";
 import Mail from "/selfLearning/InternReact/little-little/src/images/mail-inbox-app.png";
+import { Modal } from "antd";
+import app from "../../config/firebase";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 const ContactPage: React.FC = () => {
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const db = getFirestore(app);
+      const contactFormCollectionRef = collection(db, "contacts");
+      const docRef = await addDoc(contactFormCollectionRef, {
+        name,
+        email,
+        phoneNumber,
+        address,
+        message,
+      });
+      setName("");
+      setEmail("");
+      setPhoneNumber("");
+      setAddress("");
+      setMessage("");
+      setIsSuccessModalOpen(true);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
   return (
     <div className="contact-main">
       <div className="contact-main-top">
@@ -31,21 +64,35 @@ const ContactPage: React.FC = () => {
 
             <div className="contact-text-children-two">
               <div className="input-box">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="input-box-row-1">
                     <div className="contact-input-col-1">
-                      <Input placeholder="Tên" width="105%" padding="15px" />
+                      <Input
+                        placeholder="Tên"
+                        width="105%"
+                        padding="15px"
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                      />
                     </div>
                     <div className="contact-input-col-2">
-                      <Input placeholder="Email" width="202%" padding="15px" />
+                      <Input
+                        placeholder="Email"
+                        width="202%"
+                        padding="15px"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                      />
                     </div>
                   </div>
                   <div className="input-box-row-2">
                     <div className="contact-input-col-1">
                       <Input
-                        placeholder="Số điện thoại "
+                        placeholder="Số điện thoại"
                         width="105%"
                         padding="15px"
+                        value={phoneNumber}
+                        onChange={(event) => setPhoneNumber(event.target.value)}
                       />
                     </div>
                     <div className="contact-input-col-2">
@@ -53,11 +100,19 @@ const ContactPage: React.FC = () => {
                         placeholder="Địa chỉ"
                         width="202%"
                         padding="15px"
+                        value={address}
+                        onChange={(event) => setAddress(event.target.value)}
                       />
                     </div>
                   </div>
                   <div className="textarea-box">
-                    <TextArea rows={10} cols={88} placeholder="Lời nhắn" />
+                    <TextArea
+                      rows={10}
+                      cols={88}
+                      placeholder="Lời nhắn"
+                      value={message}
+                      onChange={(event) => setMessage(event.target.value)}
+                    />
                   </div>
                   <div className="contact-button">
                     <Button
@@ -69,6 +124,7 @@ const ContactPage: React.FC = () => {
                       fontWeight="900"
                       lineHeight="normal"
                       color="#fff"
+                      type="submit"
                     />
                   </div>
                 </form>
@@ -117,8 +173,15 @@ const ContactPage: React.FC = () => {
       <div className="contact-picture-4">
         <img src={Avatar} alt="Picture2" />
       </div>
+      <Modal
+        title="Thành công"
+        visible={isSuccessModalOpen}
+        onCancel={() => setIsSuccessModalOpen(false)}
+      >
+        <p>Gửi liên hệ thành công!</p>
+        <p>Vui lòng kiên nhẫn đợi phản hồi từ chúng tôi, bạn nhé!</p>
+      </Modal>
     </div>
-    // </div>
   );
 };
 
