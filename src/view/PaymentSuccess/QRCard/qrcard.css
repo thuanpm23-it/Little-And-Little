@@ -1,0 +1,50 @@
+.paysuccess-qr-card {
+  width: 95%;
+  height: 500px;
+  border-radius: 16px;
+  background: #fff;
+  text-align: center;
+}
+.paysucces-qr-img {
+  padding-top: 30px;
+  margin-left: 15%;
+}
+.paysucces-qr-title {
+  color: #000;
+  font-family: Montserrat;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.paysucces-qr-text-1 {
+  color: var(--yellow-1, #ffc226);
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.paysucces-qr-text-2 {
+  color: #000;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.paysucces-qr-text-3 {
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.paysuccess-qr-tick {
+  margin-left: 40%;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import PageNotFound from "../pages/404/PageNotFound";
+// import PageNotFound from "../pages/404/PageNotFound";
 import HomePage from "./../view/Home/Home";
 import EventPage from "./../view/Event/EventPage/Event";
 import ContactPage from "./../view/Contact/Contact";
@@ -18,7 +18,7 @@ const Routers: React.FC = () => {
       <Route path="payment" element={<PaymentPage />} />
       <Route path="event/:id" element={<EventDetailPage />} />
       <Route path="success" element={<SuccessPage />} />
-      <Route path="/*" element={<PageNotFound />} />
+      {/* <Route path="/*" element={<PageNotFound />} /> */}
     </Routes>
   );
 };

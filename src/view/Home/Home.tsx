@@ -9,10 +9,11 @@ import Picture7 from "../../images/picture7.png";
 import Picture3 from "../../images/picture3.png";
 import Picture6 from "../../images/picture6.png";
 import Picture8 from "../../images/picture8.png";
+import Picture5 from "../../images/picture5.png";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setBookingDetails } from "../../redux/bookingSlice";
-
+import { CalendarOutlined, CaretDownOutlined } from "@ant-design/icons";
 const HomePage: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,7 +51,9 @@ const HomePage: React.FC = () => {
         <div className="home-picture-1">
           <img src={Picture4} alt="Picture4" />
         </div>
-
+        <div className="home-picture-2">
+          <img src={Picture5} alt="Picture5" />
+        </div>
         <div className="home-picture-3">
           <img src={Picture1} alt="Picture1" />
         </div>
@@ -113,12 +116,17 @@ const HomePage: React.FC = () => {
             </div>
             <form onSubmit={handleFormSubmit}>
               <div className="home-input-box">
-                <input
-                  placeholder="Loại gói"
-                  value={packageType}
-                  onChange={(e) => setPackageType(e.target.value)}
-                  className="input-item home-input-1"
-                />
+                <div className="input-row">
+                  <input
+                    placeholder="Loại gói"
+                    value={packageType}
+                    onChange={(e) => setPackageType(e.target.value)}
+                    className="input-item home-input-1"
+                  />
+                  <button className="icon-button">
+                    <CaretDownOutlined className="icons" />
+                  </button>
+                </div>
                 <div className="input-row">
                   <input
                     placeholder="Số lượng vé"
@@ -127,13 +135,18 @@ const HomePage: React.FC = () => {
                     onChange={(e) => setQuantity(Number(e.target.value))}
                     className="input-item home-input-2"
                   />
-                  <input
-                    placeholder="Ngày sử dụng"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="input-item home-input-3"
-                    type="date"
-                  />
+                  <div className="input-row">
+                    <input
+                      placeholder="Ngày sử dụng"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      className="input-item home-input-3"
+                      type="date"
+                    />
+                    <button className="icon-button">
+                      <CalendarOutlined className="icons" />
+                    </button>
+                  </div>
                 </div>
 
                 <input

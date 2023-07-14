@@ -6,7 +6,7 @@ import NavBar from "./layout/Navbar/Navbar";
 function App() {
   return (
     <div className="wrapper">
-      <div>
+      <div className="nav-wrapper">
         <NavBar />
       </div>
       <div className="main">

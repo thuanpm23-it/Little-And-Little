@@ -1,8 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
+import Slider from "react-slick";
 import "../../Event/EventPage/event.css";
-import EventCard from "../../../components/card/card";
+import EventCard from "../EventCard/EventCard";
 import { CaretRightFilled, CaretLeftFilled } from "@ant-design/icons";
 import app from "../../../config/firebase";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Flag1 from "../../../images/flag1.png";
+import Flag2 from "../../../images/flag2.png";
 import {
   getFirestore,
   collection,
@@ -11,7 +16,7 @@ import {
 } from "firebase/firestore";
 
 const EventPage: React.FC = () => {
-  const cardContainerRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<Slider>(null);
   const [events, setEvents] = useState<DocumentData[]>([]);
 
   useEffect(() => {
@@ -30,40 +35,49 @@ const EventPage: React.FC = () => {
     fetchEvents();
   }, []);
 
-  const handleScrollLeft = () => {
-    if (cardContainerRef.current) {
-      cardContainerRef.current.scrollLeft -=
-        cardContainerRef.current.offsetWidth * 4;
-    }
+  const previous = () => {
+    sliderRef.current?.slickPrev();
   };
 
-  const handleScrollRight = () => {
-    if (cardContainerRef.current) {
-      cardContainerRef.current.scrollLeft +=
-        cardContainerRef.current.offsetWidth * 4;
-    }
+  const next = () => {
+    sliderRef.current?.slickNext();
+  };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
   };
 
   return (
     <>
       <div className="event-header-box">
+        <img src={Flag1} alt="Flag1" className="flag1-img" />
         <div className="header-text-box">
           <div className="header-text">Sự kiện nổi bật</div>
         </div>
+        <img src={Flag2} alt="Flag2" className="flag2-img" />
       </div>
       <div className="event-main-box">
         <div className="event-main">
-          <div className="care-left" onClick={handleScrollLeft}>
-            <CaretLeftFilled />
+          <button className="icon-button button-previous" onClick={previous}>
+            <CaretLeftFilled className="icons" />
+          </button>
+          <div className="card-main">
+            <Slider ref={sliderRef} {...settings}>
+              {events.map((event) => (
+                <div key={event.id}>
+                  <EventCard event={event} />
+                </div>
+              ))}
+            </Slider>
           </div>
-          <div className="card-main" ref={cardContainerRef}>
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
-          <div className="care-right" onClick={handleScrollRight}>
-            <CaretRightFilled />
-          </div>
+          <button className="icon-button" onClick={next}>
+            <CaretRightFilled className="icons" />
+          </button>
         </div>
       </div>
     </>

@@ -172,7 +172,8 @@
 }
 
 .home-input-1 {
-  width: 65%;
+  width: 69%;
+  margin-right: 7px;
 }
 
 .home-input-2 {
@@ -180,12 +181,13 @@
 }
 
 .home-input-3 {
-  width: 36%;
+  width: 160px;
   margin-left: 15px;
+  margin-right: 7px;
 }
 
 .home-input-4 {
-  width: 80%;
+  width: 84.5%;
 }
 
 .home-button-box {
@@ -209,7 +211,7 @@
 
 .home-picture-2 {
   position: absolute;
-  top: 10%;
+  top: 14%;
   left: 50%;
   z-index: 1;
 }

@@ -1,7 +1,6 @@
 .paysuccess-header-box {
   text-align: center;
 }
-
 .paysuccess-main-box {
   display: flex;
   align-items: center;
@@ -30,9 +29,7 @@
 }
 
 .paysuccess-card {
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
+  width: 85%;
 }
 .paysuccess-main-bottom {
   display: flex;
@@ -61,64 +58,10 @@
   opacity: 0.5;
 }
 
-.paysuccess-bottom-box {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.ms {
-  margin-right: 15px;
-}
-
-.paysuccess-qr-card {
-  width: 20%;
-  height: 500px;
-  border-radius: 16px;
-  background: #fff;
-  text-align: center;
-  margin-left: 10px;
-}
-.paysucces-qr-img {
-  margin-top: 30px;
-}
-.paysucces-qr-title {
-  color: #000;
-  font-family: Montserrat;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.paysucces-qr-text-1 {
-  color: var(--yellow-1, #ffc226);
-  text-align: center;
-  font-family: Montserrat;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.paysucces-qr-text-2 {
-  color: #000;
-  text-align: center;
-  font-family: Montserrat;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.paysucces-qr-text-3 {
-  color: var(--text, #23221f);
-  text-align: center;
-  font-family: Montserrat;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 26px;
+.paysuccess-button-wh {
+  width: 160px;
+  height: 40px;
+  font-size: 18px;
 }
 
 .paysuccess-picture {
@@ -126,9 +69,18 @@
   left: -60px;
   top: 45%;
 }
-
-.paysuccess-button-wh {
-  width: 160px;
-  height: 40px;
-  font-size: 18px;
+.ms {
+  margin-right: 15px;
+}
+.paysuccess-bottom-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.paysuccess-tab-box-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 3%;
 }

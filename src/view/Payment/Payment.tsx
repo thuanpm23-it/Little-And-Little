@@ -3,6 +3,7 @@ import "../../view/Payment/payment.css";
 import Avatar3 from "../../images/avatar3.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { CalendarOutlined } from "@ant-design/icons";
 const PaymentPage: React.FC = () => {
   const bookingDetails = useSelector((state: RootState) => state.booking);
   return (
@@ -118,10 +119,15 @@ const PaymentPage: React.FC = () => {
               </div>
               <div>
                 <label>Ngày hết hạn</label> <br />
-                <input
-                  placeholder="Ngày hết hạn"
-                  className="input-item payment-input-7"
-                />
+                <div className="input-row">
+                  <input
+                    placeholder="Ngày hết hạn"
+                    className="input-item payment-input-7"
+                  />
+                  <button className="icon-button">
+                    <CalendarOutlined className="icons" />
+                  </button>
+                </div>
               </div>
               <div>
                 <label>CVV/CVC</label> <br />

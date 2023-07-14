@@ -3,6 +3,8 @@ import "../../Event/EventDetail/eventdetail.css";
 import { useParams } from "react-router-dom";
 import { getFirestore, getDoc, doc, collection } from "firebase/firestore";
 import app from "../../../config/firebase";
+import Flag1 from "../../../images/flag1.png";
+import Flag2 from "../../../images/flag2.png";
 
 const EventDetailPage: React.FC = () => {
   const { id } = useParams();
@@ -32,9 +34,11 @@ const EventDetailPage: React.FC = () => {
   return (
     <>
       <div className="eventdetail-header-box">
+        <img src={Flag1} alt="Flag1" className="flag1-img" />
         <div className="header-text-box">
           <div className="header-text">{event.title}</div>
         </div>
+        <img src={Flag2} alt="Flag2" className="flag2-img" />
       </div>
       <div className="eventdetail-main-box">
         <div className="eventdetail-main">
