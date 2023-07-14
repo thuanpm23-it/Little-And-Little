@@ -1,0 +1,134 @@
+.paysuccess-header-box {
+  text-align: center;
+}
+
+.paysuccess-main-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50px;
+}
+.paysuccess-tab-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  height: 637px;
+  fill: #fde8b3;
+  background-color: #fde8b3;
+  border-radius: 30px;
+}
+
+.paysuccess-tab-box-border {
+  width: 97.5%;
+  height: 612px;
+  border-style: dashed;
+  background-color: #fff6d4;
+  border-width: 3px;
+  border-color: rgb(248, 97, 97);
+  border-radius: 30px;
+}
+
+.paysuccess-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+.paysuccess-main-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.paysuccess-text-start {
+  margin-left: 9.5%;
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+.paysuccess-text-end {
+  margin-right: 8%;
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  opacity: 0.5;
+}
+
+.paysuccess-bottom-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.ms {
+  margin-right: 15px;
+}
+
+.paysuccess-qr-card {
+  width: 20%;
+  height: 500px;
+  border-radius: 16px;
+  background: #fff;
+  text-align: center;
+  margin-left: 10px;
+}
+.paysucces-qr-img {
+  margin-top: 30px;
+}
+.paysucces-qr-title {
+  color: #000;
+  font-family: Montserrat;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.paysucces-qr-text-1 {
+  color: var(--yellow-1, #ffc226);
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.paysucces-qr-text-2 {
+  color: #000;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.paysucces-qr-text-3 {
+  color: var(--text, #23221f);
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.paysuccess-picture {
+  position: absolute;
+  left: -60px;
+  top: 45%;
+}
+
+.paysuccess-button-wh {
+  width: 160px;
+  height: 40px;
+  font-size: 18px;
+}

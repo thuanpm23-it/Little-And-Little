@@ -1,0 +1,140 @@
+.contact-header-box {
+  text-align: center;
+}
+
+.contact-main-box {
+  display: flex;
+}
+
+.contact-tab-box-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 630px;
+  fill: #fde8b3;
+  background-color: #fde8b3;
+  margin-left: 12%;
+  border-radius: 30px;
+}
+
+.contact-tab-box-border-1 {
+  width: 97%;
+  height: 606px;
+  border-style: dashed;
+  background-color: #fff6d4;
+  border-width: 3px;
+  border-color: rgb(248, 97, 97);
+  border-radius: 30px;
+}
+
+.contact-tab-box-text-1 {
+  margin-top: 25px;
+  margin-left: 40px;
+  margin-right: 25px;
+  color: var(--text, #23221f);
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px;
+  opacity: 0.699999988079071;
+}
+
+.contact-tab-box-text-2 {
+  margin-top: 25px;
+  margin-left: 40px;
+}
+
+.contact-input-1 {
+  width: 27%;
+}
+
+.contact-input-2 {
+  width: 54%;
+  margin-left: 2%;
+}
+
+.my {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+textarea {
+  padding-left: 20px;
+  padding-top: 20px;
+  border-color: #fff;
+  border-radius: 16px;
+  background: var(--w, #fff);
+  box-shadow: -1px 3px 3px 0px rgba(178, 91, 11, 0.5) inset;
+  resize: none;
+}
+
+.contact-button-wh {
+  width: 70%;
+  height: 61px;
+  font-size: 28px;
+}
+
+.contact-button-box {
+  padding-top: 6%;
+  padding-left: 20%;
+}
+
+.contact-tab-box-2 {
+  margin-left: 2%;
+}
+
+.contact-tab-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  height: 189px;
+  fill: #fde8b3;
+  background-color: #fde8b3;
+  border-radius: 30px;
+  margin-bottom: 33px;
+}
+
+.contact-tab-box-border {
+  width: 94%;
+  height: 165px;
+  border-style: dashed;
+  background-color: #fff6d4;
+  border-width: 3px;
+  border-color: rgb(248, 97, 97);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.contact-img {
+  margin-left: 30px;
+  margin-right: 15px;
+}
+
+.contact-text-1 {
+  color: #12265a;
+  font-family: Montserrat;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: -10px;
+}
+
+.contact-text-2 {
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.contact-picture-1 {
+  margin-top: -605px;
+  margin-left: -125px;
+  position: absolute;
+}
