@@ -7,6 +7,7 @@ import Mail from "../../images/mail-inbox-app.png";
 import { Modal } from "antd";
 import app from "../../config/firebase";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { CloseOutlined } from "@ant-design/icons";
 
 const ContactPage: React.FC = () => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -15,6 +16,12 @@ const ContactPage: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
+
+  const closeIcon = (
+    <span className="custom-close-button">
+      <CloseOutlined />
+    </span>
+  );
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -96,8 +103,8 @@ const ContactPage: React.FC = () => {
                 <div className="textarea-box">
                   <textarea
                     placeholder="Lời nhắn"
-                    rows={10}
-                    cols={87}
+                    rows={9}
+                    cols={77}
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     required
@@ -157,13 +164,29 @@ const ContactPage: React.FC = () => {
         <img src={Avatar} alt="Picture2" />
       </div>
       <Modal
-        title="Thành công"
         visible={isSuccessModalOpen}
         onCancel={() => setIsSuccessModalOpen(false)}
+        cancelButtonProps={{ style: { display: "none" } }}
+        okButtonProps={{ style: { display: "none" } }}
+        closeIcon={closeIcon}
       >
-        <p>Gửi liên hệ thành công!</p>
-        <p>Vui lòng kiên nhẫn đợi phản hồi từ chúng tôi, bạn nhé!</p>
+        <p className="modal-t">
+          Gửi liên hệ thành công. <br /> Vui lòng kiên nhẫn đợi phản hồi từ
+          chúng tôi, bạn nhé!
+        </p>
       </Modal>
+      {/* <Modal
+        visible={isSuccessModalOpen}
+        onCancel={() => setIsSuccessModalOpen(false)}
+        cancelButtonProps={{ style: { display: "none" } }}
+        okButtonProps={{ style: { display: "none" } }}
+        closable={false}
+      >
+        <p className="modal-t">
+          Hình như đã có lỗi xảy ra khi thanh toán... <br /> Vui lòng kiểm tra
+          lại thông tin liên hệ, thông tin thẻ và thử lại.
+        </p>
+      </Modal> */}
     </>
   );
 };

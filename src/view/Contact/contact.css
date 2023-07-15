@@ -68,6 +68,11 @@ textarea {
   background: var(--w, #fff);
   box-shadow: -1px 3px 3px 0px rgba(178, 91, 11, 0.5) inset;
   resize: none;
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
 }
 
 .contact-button-wh {
@@ -137,4 +142,17 @@ textarea {
   margin-top: -605px;
   margin-left: -125px;
   position: absolute;
+}
+.custom-close-button {
+  color: #ff8a00;
+}
+
+.modal-t {
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  opacity: 0.699999988079071;
 }

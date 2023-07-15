@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "../../view/Home/home.css";
 import HomeLogo from "../../images/damsen.png";
 import Star from "../../images/star.png";
@@ -18,12 +18,33 @@ const HomePage: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [showDropdown, setShowDropdown] = useState(false);
   const [packageType, setPackageType] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [date, setDate] = useState("");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+
+  const selectRef = useRef<HTMLSelectElement>(null);
+
+  // const handleButtonClick = () => {
+  //   setShowDropdown(!showDropdown);
+  //   selectRef.current.focus();
+  // };
+
+  // const handleOptionClick = (value) => {
+  //   setPackageType(value);
+  //   setShowDropdown(false);
+  // };
+  // const handleButtonClick = () => {
+  //   setShowDropdown(!showDropdown);
+  // };
+
+  // const handleOptionClick = () => {
+  //   setPackageType();
+  //   setShowDropdown(false);
+  // };
 
   const handleFormSubmit = () => {
     const bookingData = {
@@ -117,15 +138,42 @@ const HomePage: React.FC = () => {
             <form onSubmit={handleFormSubmit}>
               <div className="home-input-box">
                 <div className="input-row">
-                  <input
-                    placeholder="Loại gói"
+                  <select
+                    ref={selectRef}
                     value={packageType}
                     onChange={(e) => setPackageType(e.target.value)}
                     className="input-item home-input-1"
-                  />
-                  <button className="icon-button">
+                    required
+                  >
+                    <option value="">--- Chọn loại gói ---</option>
+                    <option value="Gia đình">Gói gia đình</option>
+                    <option value="Đơn">Gói đơn</option>
+                  </select>
+                  <button
+                    type="button"
+                    className="icon-button"
+                    // onClick={() => {
+                    //   setShowDropdown(!showDropdown);
+                    //   selectRef.current?.focus();
+                    // }}
+                  >
                     <CaretDownOutlined className="icons" />
                   </button>
+                  {/* <select
+                    ref={selectRef}
+                    value={packageType}
+                    onChange={(e) => setPackageType(e.target.value)}
+                    className="input-item home-input-1"
+                    required
+                  >
+                    {showDropdown && (
+                      <>
+                        <option value="">--- Chọn loại gói ---</option>
+                        <option value="Gia đình">Gói gia đình</option>
+                        <option value="Đơn">Gói đơn</option>
+                      </>
+                    )}
+                  </select> */}
                 </div>
                 <div className="input-row">
                   <input
@@ -134,6 +182,7 @@ const HomePage: React.FC = () => {
                     type="number"
                     onChange={(e) => setQuantity(Number(e.target.value))}
                     className="input-item home-input-2"
+                    required
                   />
                   <div className="input-row">
                     <input
@@ -142,6 +191,7 @@ const HomePage: React.FC = () => {
                       onChange={(e) => setDate(e.target.value)}
                       className="input-item home-input-3"
                       type="date"
+                      required
                     />
                     <button className="icon-button">
                       <CalendarOutlined className="icons" />
@@ -154,18 +204,23 @@ const HomePage: React.FC = () => {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className="input-item home-input-4"
+                  required
                 />
                 <input
                   placeholder="Số điện thoại"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="input-item home-input-4"
+                  type="tel"
+                  required
                 />
                 <input
                   placeholder="Địa chỉ email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="input-item home-input-4"
+                  type="email"
+                  required
                 />
               </div>
               <div className="home-button-box">

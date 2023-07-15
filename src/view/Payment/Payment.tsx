@@ -6,6 +6,22 @@ import { RootState } from "../../redux/store";
 import { CalendarOutlined } from "@ant-design/icons";
 const PaymentPage: React.FC = () => {
   const bookingDetails = useSelector((state: RootState) => state.booking);
+
+  const totalPrice =
+    bookingDetails.packageType === "Gia đình"
+      ? 100000 * bookingDetails.quantity
+      : 80000 * bookingDetails.quantity;
+
+  const formattedPrice = totalPrice.toLocaleString("vi-VN");
+
+  const formattedDate = new Date(bookingDetails.date).toLocaleDateString(
+    "vi-VN",
+    {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }
+  );
   return (
     <>
       <div className="payment-header-box">
@@ -19,7 +35,7 @@ const PaymentPage: React.FC = () => {
             <div className="payment-tag-1">
               <div className="payment-tag-border-1">
                 <div className="payment-tag-text-1">
-                  VÉ CỔNG - {bookingDetails.packageType}
+                  VÉ CỔNG - VÉ {bookingDetails.packageType}
                 </div>
               </div>
             </div>
@@ -29,7 +45,7 @@ const PaymentPage: React.FC = () => {
                   <label>Số tiền thanh toán</label> <br />
                   <input
                     placeholder=""
-                    value={bookingDetails.packageType}
+                    value={formattedPrice}
                     className="input-item payment-input-1"
                   />
                 </div>
@@ -48,7 +64,7 @@ const PaymentPage: React.FC = () => {
                   <label>Ngày sử dụng</label> <br />
                   <input
                     placeholder=""
-                    value={bookingDetails.date}
+                    value={formattedDate}
                     className="input-item payment-input-3"
                   />
                 </div>

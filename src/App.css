@@ -31,6 +31,11 @@
   border-radius: 16px;
   background: var(--w, #fff);
   box-shadow: -1px 3px 3px 0px rgba(178, 91, 11, 0.5) inset;
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
 }
 
 .header-text {
@@ -77,10 +82,12 @@
 .flag1-img {
   position: absolute;
   right: 0.5%;
+  width: 32%;
 }
 
 .flag2-img {
   position: absolute;
   left: 0.5%;
   top: 15.5%;
+  width: 32%;
 }
