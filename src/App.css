@@ -91,3 +91,13 @@
   top: 15.5%;
   width: 32%;
 }
+
+.modal-t {
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  opacity: 0.699999988079071;
+}

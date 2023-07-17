@@ -164,7 +164,7 @@ const ContactPage: React.FC = () => {
         <img src={Avatar} alt="Picture2" />
       </div>
       <Modal
-        visible={isSuccessModalOpen}
+        open={isSuccessModalOpen}
         onCancel={() => setIsSuccessModalOpen(false)}
         cancelButtonProps={{ style: { display: "none" } }}
         okButtonProps={{ style: { display: "none" } }}
@@ -175,18 +175,6 @@ const ContactPage: React.FC = () => {
           chúng tôi, bạn nhé!
         </p>
       </Modal>
-      {/* <Modal
-        visible={isSuccessModalOpen}
-        onCancel={() => setIsSuccessModalOpen(false)}
-        cancelButtonProps={{ style: { display: "none" } }}
-        okButtonProps={{ style: { display: "none" } }}
-        closable={false}
-      >
-        <p className="modal-t">
-          Hình như đã có lỗi xảy ra khi thanh toán... <br /> Vui lòng kiểm tra
-          lại thông tin liên hệ, thông tin thẻ và thử lại.
-        </p>
-      </Modal> */}
     </>
   );
 };

@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../view/Payment/payment.css";
 import Avatar3 from "../../images/avatar3.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { CalendarOutlined } from "@ant-design/icons";
+import {
+  DocumentData,
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
+import app from "../../config/firebase";
+import { Modal } from "antd";
 const PaymentPage: React.FC = () => {
   const bookingDetails = useSelector((state: RootState) => state.booking);
+
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [banks, setBanks] = useState<DocumentData[]>([]);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const totalPrice =
     bookingDetails.packageType === "Gia đình"
@@ -22,6 +38,95 @@ const PaymentPage: React.FC = () => {
       year: "numeric",
     }
   );
+
+  useEffect(() => {
+    const fetchBanks = async () => {
+      try {
+        const db = getFirestore(app);
+        const banksRef = collection(db, "banks");
+        const snapshot = await getDocs(banksRef);
+        const bankData = snapshot.docs.map((doc) => doc.data());
+        setBanks(bankData);
+      } catch (error) {
+        console.error("Error fetching banks: ", error);
+      }
+    };
+
+    fetchBanks();
+  }, []);
+
+  const generateTicketId = () => {
+    const characters = "0123456789";
+    let ticketId = "";
+
+    for (let i = 0; i < 8; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      ticketId += characters.charAt(randomIndex);
+    }
+
+    return ticketId;
+  };
+
+  const handlePaymentSubmit = async () => {
+    if (cardNumber && cardName && expirationDate && cvv) {
+      const matchingData = banks.filter(
+        (item) =>
+          item.cardName === cardName &&
+          item.cardNumber === cardNumber &&
+          item.cvv === cvv &&
+          item.expirationDate === expirationDate
+      );
+
+      if (matchingData.length > 0) {
+        console.log("Correct");
+        const db = getFirestore(app);
+
+        try {
+          const paymentData = {
+            packageType: bookingDetails.packageType,
+            totalPrice: formattedPrice,
+            quantity: bookingDetails.quantity,
+            date: formattedDate,
+            fullName: bookingDetails.fullName,
+            phone: bookingDetails.phone,
+            email: bookingDetails.email,
+            bankData: {
+              cardId: matchingData[0].id,
+              cardName: cardName,
+              cardNumber: cardNumber,
+              expirationDate: expirationDate,
+              cvv: cvv,
+            },
+          };
+
+          const paymentRef = collection(db, "payments");
+          const docRef = await addDoc(paymentRef, paymentData);
+          console.log("Document written with ID: ", docRef.id);
+          const paymentId = docRef.id;
+
+          const ticketsData = [];
+          for (let i = 0; i < bookingDetails.quantity; i++) {
+            const ticketId = generateTicketId();
+            const ticketData = {
+              ticketId: "ALT" + ticketId,
+              paymentId: paymentId,
+            };
+            ticketsData.push(ticketData);
+          }
+
+          const ticketsRef = collection(db, "tickets");
+          await Promise.all(
+            ticketsData.map((ticket) => addDoc(ticketsRef, ticket))
+          );
+        } catch {}
+      } else {
+        setIsSuccessModalOpen(true);
+      }
+    } else {
+      setIsSuccessModalOpen(true);
+    }
+  };
+
   return (
     <>
       <div className="payment-header-box">
@@ -45,7 +150,7 @@ const PaymentPage: React.FC = () => {
                   <label>Số tiền thanh toán</label> <br />
                   <input
                     placeholder=""
-                    value={formattedPrice}
+                    defaultValue={formattedPrice}
                     className="input-item payment-input-1"
                   />
                 </div>
@@ -54,7 +159,7 @@ const PaymentPage: React.FC = () => {
                   <div className="payment-input-col-row">
                     <input
                       placeholder=""
-                      value={bookingDetails.quantity}
+                      defaultValue={bookingDetails.quantity}
                       className="input-item payment-input-2"
                     />
                     <span>vé</span>
@@ -64,7 +169,7 @@ const PaymentPage: React.FC = () => {
                   <label>Ngày sử dụng</label> <br />
                   <input
                     placeholder=""
-                    value={formattedDate}
+                    defaultValue={formattedDate}
                     className="input-item payment-input-3"
                   />
                 </div>
@@ -73,7 +178,7 @@ const PaymentPage: React.FC = () => {
                 <label>Thông tin liên hệ</label> <br />
                 <input
                   placeholder=""
-                  value={bookingDetails.fullName}
+                  defaultValue={bookingDetails.fullName}
                   className="input-item payment-input-4"
                 />
               </div>
@@ -81,7 +186,7 @@ const PaymentPage: React.FC = () => {
                 <label>Điện thoại</label> <br />
                 <input
                   placeholder=""
-                  value={bookingDetails.phone}
+                  defaultValue={bookingDetails.phone}
                   className="input-item payment-input-5"
                 />
               </div>
@@ -89,7 +194,7 @@ const PaymentPage: React.FC = () => {
                 <label>Email</label> <br />
                 <input
                   placeholder=""
-                  value={bookingDetails.email}
+                  defaultValue={bookingDetails.email}
                   className="input-item payment-input-4"
                 />
               </div>
@@ -117,6 +222,7 @@ const PaymentPage: React.FC = () => {
                 <div className="payment-tag-text-2">THÔNG TIN THANH TOÁN</div>
               </div>
             </div>
+
             <div className="payment-input-box-2">
               <div>
                 <label>Số thẻ</label>
@@ -124,6 +230,8 @@ const PaymentPage: React.FC = () => {
                 <input
                   placeholder="Số thẻ"
                   className="input-item payment-input-6"
+                  value={cardNumber}
+                  onChange={(e) => setCardNumber(e.target.value)}
                 />
               </div>
               <div>
@@ -131,6 +239,8 @@ const PaymentPage: React.FC = () => {
                 <input
                   placeholder="Họ và tên"
                   className="input-item payment-input-6"
+                  value={cardName}
+                  onChange={(e) => setCardName(e.target.value)}
                 />
               </div>
               <div>
@@ -139,6 +249,8 @@ const PaymentPage: React.FC = () => {
                   <input
                     placeholder="Ngày hết hạn"
                     className="input-item payment-input-7"
+                    value={expirationDate}
+                    onChange={(e) => setExpirationDate(e.target.value)}
                   />
                   <button className="icon-button">
                     <CalendarOutlined className="icons" />
@@ -151,11 +263,17 @@ const PaymentPage: React.FC = () => {
                   type="password"
                   placeholder="***"
                   className="input-item payment-input-8"
+                  value={cvv}
+                  onChange={(e) => setCvv(e.target.value)}
                 />
               </div>
             </div>
             <div className="payment-button-box">
-              <button type="submit" className="button-item payment-button-wh">
+              <button
+                type="submit"
+                className="button-item payment-button-wh"
+                onClick={handlePaymentSubmit}
+              >
                 Thanh toán
               </button>
             </div>
@@ -165,6 +283,18 @@ const PaymentPage: React.FC = () => {
           <img src={Avatar3} alt="Avatar3" />
         </div>
       </div>
+      <Modal
+        open={isSuccessModalOpen}
+        onCancel={() => setIsSuccessModalOpen(false)}
+        cancelButtonProps={{ style: { display: "none" } }}
+        okButtonProps={{ style: { display: "none" } }}
+        closable={false}
+      >
+        <p className="modal-t">
+          Hình như đã có lỗi xảy ra khi thanh toán... <br /> Vui lòng kiểm tra
+          lại thông tin liên hệ, thông tin thẻ và thử lại.
+        </p>
+      </Modal>
     </>
   );
 };

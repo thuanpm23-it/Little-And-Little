@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import bookingReducer from "./bookingSlice";
+import paymentReducer from "./paymentSlice";
 
 const store = configureStore({
   reducer: {
     booking: bookingReducer,
+    payment: paymentReducer,
   },
 });
 
