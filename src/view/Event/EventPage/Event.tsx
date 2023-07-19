@@ -1,39 +1,24 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import Slider from "react-slick";
 import "../../Event/EventPage/event.css";
 import EventCard from "../EventCard/EventCard";
 import { CaretRightFilled, CaretLeftFilled } from "@ant-design/icons";
-import app from "../../../config/firebase";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Flag1 from "../../../images/flag1.png";
 import Flag2 from "../../../images/flag2.png";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  DocumentData,
-} from "firebase/firestore";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/store";
+import { fetchEvents } from "../../../redux/slice/event/eventSlice";
 
 const EventPage: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
-  const [events, setEvents] = useState<DocumentData[]>([]);
+  const events = useSelector((state: RootState) => state.events.events);
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const db = getFirestore(app);
-        const eventsRef = collection(db, "events");
-        const snapshot = await getDocs(eventsRef);
-        const eventData = snapshot.docs.map((doc) => doc.data());
-        setEvents(eventData);
-      } catch (error) {
-        console.error("Error fetching events: ", error);
-      }
-    };
-
-    fetchEvents();
-  }, []);
+    dispatch(fetchEvents());
+  }, [dispatch]);
 
   const previous = () => {
     sliderRef.current?.slickPrev();

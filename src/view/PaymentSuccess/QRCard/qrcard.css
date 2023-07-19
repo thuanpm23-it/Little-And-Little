@@ -1,5 +1,5 @@
 .paysuccess-qr-card {
-  width: 95%;
+  width: 220px;
   height: 500px;
   border-radius: 16px;
   background: #fff;
@@ -7,7 +7,6 @@
 }
 .paysucces-qr-img {
   padding-top: 30px;
-  margin-left: 15%;
 }
 .paysucces-qr-title {
   color: #000;

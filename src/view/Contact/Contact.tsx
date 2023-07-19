@@ -5,9 +5,10 @@ import Telephone from "../../images/telephone.png";
 import Waze from "../../images/waze.png";
 import Mail from "../../images/mail-inbox-app.png";
 import { Modal } from "antd";
-import app from "../../config/firebase";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { CloseOutlined } from "@ant-design/icons";
+import { sendContactForm } from "../../redux/slice/contact/contactSlice";
+import { AppDispatch } from "../../redux/store";
+import { useDispatch } from "react-redux";
 
 const ContactPage: React.FC = () => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -16,6 +17,7 @@ const ContactPage: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
+  const dispatch: AppDispatch = useDispatch();
 
   const closeIcon = (
     <span className="custom-close-button">
@@ -23,28 +25,23 @@ const ContactPage: React.FC = () => {
     </span>
   );
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    try {
-      const db = getFirestore(app);
-      const contactFormCollectionRef = collection(db, "contacts");
-      const docRef = await addDoc(contactFormCollectionRef, {
-        name,
-        email,
-        phoneNumber,
-        address,
-        message,
-      });
-      setName("");
-      setEmail("");
-      setPhoneNumber("");
-      setAddress("");
-      setMessage("");
-      setIsSuccessModalOpen(true);
-    } catch (error) {
-      console.error("Error adding document: ", error);
-    }
+    const contactData = {
+      name,
+      email,
+      phoneNumber,
+      address,
+      message,
+    };
+    dispatch(sendContactForm(contactData));
+    setName("");
+    setEmail("");
+    setPhoneNumber("");
+    setAddress("");
+    setMessage("");
+    setIsSuccessModalOpen(true);
   };
   return (
     <>

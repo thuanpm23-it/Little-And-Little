@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../view/Payment/payment.css";
 import Avatar3 from "../../images/avatar3.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { CalendarOutlined } from "@ant-design/icons";
 import {
@@ -13,14 +13,20 @@ import {
 } from "firebase/firestore";
 import app from "../../config/firebase";
 import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
+
 const PaymentPage: React.FC = () => {
   const bookingDetails = useSelector((state: RootState) => state.booking);
+
+  // const [tickets, setTickets] = useState([]);
+
+  const navigate = useNavigate();
 
   const [cardNumber, setCardNumber] = useState("");
   const [cardName, setCardName] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCvv] = useState("");
-  const [banks, setBanks] = useState<DocumentData[]>([]);
+  const [bank, setBank] = useState<DocumentData[]>([]);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const totalPrice =
@@ -46,7 +52,7 @@ const PaymentPage: React.FC = () => {
         const banksRef = collection(db, "banks");
         const snapshot = await getDocs(banksRef);
         const bankData = snapshot.docs.map((doc) => doc.data());
-        setBanks(bankData);
+        setBank(bankData);
       } catch (error) {
         console.error("Error fetching banks: ", error);
       }
@@ -69,7 +75,7 @@ const PaymentPage: React.FC = () => {
 
   const handlePaymentSubmit = async () => {
     if (cardNumber && cardName && expirationDate && cvv) {
-      const matchingData = banks.filter(
+      const matchingData = bank.filter(
         (item) =>
           item.cardName === cardName &&
           item.cardNumber === cardNumber &&
@@ -79,9 +85,9 @@ const PaymentPage: React.FC = () => {
 
       if (matchingData.length > 0) {
         console.log("Correct");
-        const db = getFirestore(app);
 
         try {
+          const db = getFirestore(app);
           const paymentData = {
             packageType: bookingDetails.packageType,
             totalPrice: formattedPrice,
@@ -101,8 +107,8 @@ const PaymentPage: React.FC = () => {
 
           const paymentRef = collection(db, "payments");
           const docRef = await addDoc(paymentRef, paymentData);
-          console.log("Document written with ID: ", docRef.id);
           const paymentId = docRef.id;
+          console.log("Document written with ID: ", docRef.id);
 
           const ticketsData = [];
           for (let i = 0; i < bookingDetails.quantity; i++) {
@@ -110,6 +116,8 @@ const PaymentPage: React.FC = () => {
             const ticketData = {
               ticketId: "ALT" + ticketId,
               paymentId: paymentId,
+              ticketDate: formattedDate,
+              qrCodeValue: "ALT" + ticketId,
             };
             ticketsData.push(ticketData);
           }
@@ -118,6 +126,8 @@ const PaymentPage: React.FC = () => {
           await Promise.all(
             ticketsData.map((ticket) => addDoc(ticketsRef, ticket))
           );
+
+          navigate(`/success/${paymentId}`);
         } catch {}
       } else {
         setIsSuccessModalOpen(true);

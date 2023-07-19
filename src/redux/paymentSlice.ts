@@ -10,7 +10,7 @@ import {
 import app from "../config/firebase";
 
 interface BankData {
-  id: string;
+  cardId: string;
   cardName: string;
   cardNumber: string;
   expirationDate: string;
@@ -55,7 +55,7 @@ export const fetchBanks = createAsyncThunk("payment/fetchBanks", async () => {
   }
 });
 
-export const addPayment = createAsyncThunk(
+export const addPayment = createAsyncThunk<string, PaymentData>(
   "payment/addPayment",
   async (paymentData: PaymentData) => {
     try {

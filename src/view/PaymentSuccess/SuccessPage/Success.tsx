@@ -11,36 +11,94 @@ import {
   collection,
   getDocs,
   getFirestore,
+  where,
+  query,
 } from "firebase/firestore";
 import app from "../../../config/firebase";
+import { useParams } from "react-router-dom";
+import html2canvas from "html2canvas";
+import { saveAs } from "file-saver";
+import JSZip from "jszip";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/store";
+import { fetchTickets } from "../../../redux/slice/success/successSlice";
 
 const SuccessPage: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
-  const [tickets, setTickets] = useState<DocumentData[]>([]);
+  // const [tickets, setTickets] = useState<DocumentData[]>([]);
+  const { paymentId } = useParams();
+  const qrCardsRef = useRef<HTMLDivElement>(null);
+
+  const tickets = useSelector((state: RootState) => state.success.tickets);
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    if (paymentId) {
+      dispatch(fetchTickets(paymentId));
+    }
+  }, [dispatch, paymentId]);
+
   // useEffect(() => {
   //   const fetchTickets = async () => {
   //     try {
   //       const db = getFirestore(app);
   //       const ticketsRef = collection(db, "tickets");
-  //       const querySnapshot = await getDocs(ticketsRef);
-  //       const ticketData = querySnapshot.docs.map((doc) => doc.data());
-  //       const latestPaymentId =
-  //         payments.length > 0 ? payments[payments.length - 1].paymentId : null;
-  //       const filteredTickets = ticketData.filter(
-  //         (ticket) => ticket.paymentId === latestPaymentId
-  //       );
-
-  //       setTickets(filteredTickets);
+  //       const q = query(ticketsRef, where("paymentId", "==", paymentId));
+  //       const snapshot = await getDocs(q);
+  //       const ticketData = snapshot.docs.map((doc) => doc.data());
+  //       setTickets(ticketData);
   //     } catch (error) {
   //       console.error("Error fetching tickets: ", error);
   //     }
   //   };
 
   //   fetchTickets();
-  // }, []);
+  // }, [paymentId]);
 
-  const numberOfTickets = tickets.length;
+  const handleDownload = async () => {
+    if (sliderRef.current && qrCardsRef.current) {
+      const sliderElement = sliderRef.current;
+      const qrCardsElement = qrCardsRef.current;
 
+      const downloadedImages: any[] = [];
+
+      for (let i = 0; i < tickets.length; i++) {
+        sliderElement.slickGoTo(i);
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        const qrCardElement = qrCardsElement.getElementsByClassName(
+          "slick-current"
+        )[0] as HTMLElement;
+        const canvas = await html2canvas(qrCardElement);
+        const blob = await new Promise((resolve) => {
+          canvas.toBlob((blob) => resolve(blob));
+        });
+
+        if (blob) {
+          downloadedImages.push(blob);
+        }
+      }
+
+      if (downloadedImages.length > 0) {
+        downloadAllImages(downloadedImages);
+      }
+    }
+  };
+
+  const downloadAllImages = (images: any) => {
+    const zip = new JSZip();
+    const folder = zip.folder("qr_cards");
+
+    images.forEach((image: any, index: any) => {
+      const fileName = `qr_card_${index + 1}.png`;
+      folder!.file(fileName, image);
+    });
+
+    zip.generateAsync({ type: "blob" }).then((content) => {
+      saveAs(content, "qr_cards.zip");
+    });
+  };
   const previous = () => {
     sliderRef.current?.slickPrev();
   };
@@ -54,8 +112,8 @@ const SuccessPage: React.FC = () => {
     infinite: true,
     arrows: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToShow: Math.min(4, tickets.length),
+    slidesToScroll: 4,
   };
 
   return (
@@ -75,16 +133,11 @@ const SuccessPage: React.FC = () => {
               >
                 <CaretLeftFilled className="icons" />
               </button>
-              <div className="paysuccess-card">
+              <div className="paysuccess-card" ref={qrCardsRef}>
                 <Slider ref={sliderRef} {...settings}>
-                  <QRCard />
-                  <QRCard />
-                  <QRCard />
-                  <QRCard />
-                  <QRCard />
-                  <QRCard />
-                  <QRCard />
-                  <QRCard />
+                  {tickets.map((ticket) => (
+                    <QRCard key={ticket.ticketId} ticket={ticket} />
+                  ))}
                 </Slider>
               </div>
               <button className="icon-button" onClick={next}>
@@ -92,7 +145,9 @@ const SuccessPage: React.FC = () => {
               </button>
             </div>
             <div className="paysuccess-main-bottom">
-              <p className="paysuccess-text-start">Số lượng vé: 12 vé</p>
+              <p className="paysuccess-text-start">
+                Số lượng vé: {tickets.length}
+              </p>
               <p className="paysuccess-text-end">Trang 1/3</p>
             </div>
           </div>
@@ -102,11 +157,15 @@ const SuccessPage: React.FC = () => {
         </div>
       </div>
       <div className="paysuccess-bottom-box">
-        <button type="submit" className="button-item paysuccess-button-wh ms">
+        <button
+          type="submit"
+          className="button-item paysuccess-button-wh ms"
+          onClick={handleDownload}
+        >
           Tải về
         </button>
         <button type="submit" className="button-item paysuccess-button-wh">
-          Gửi qua mail
+          Gửi Email
         </button>
       </div>
     </>

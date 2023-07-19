@@ -1,34 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../../Event/EventDetail/eventdetail.css";
 import { useParams } from "react-router-dom";
-import { getFirestore, getDoc, doc, collection } from "firebase/firestore";
-import app from "../../../config/firebase";
 import Flag1 from "../../../images/flag1.png";
 import Flag2 from "../../../images/flag2.png";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/store";
+import { fetchEventDetail } from "../../../redux/slice/event/eventDetailSlice";
 
 const EventDetailPage: React.FC = () => {
   const { id } = useParams();
-  const [event, setEvent] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const event = useSelector((state: RootState) => state.eventdetail.event);
+  const loading = useSelector((state: RootState) => state.eventdetail.loading);
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    const fetchEvent = async () => {
-      const db = getFirestore(app);
-      const eventsCollectionRef = collection(db, "events");
-      const eventRef = doc(eventsCollectionRef, id);
-      const eventSnapshot = await getDoc(eventRef);
-      if (eventSnapshot.exists()) {
-        const eventData = eventSnapshot.data();
-        setEvent(eventData);
-        setLoading(false);
-      }
-    };
-
-    fetchEvent();
-  }, [id]);
+    if (id) {
+      dispatch(fetchEventDetail(id));
+    }
+  }, [dispatch, id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (

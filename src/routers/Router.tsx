@@ -17,7 +17,7 @@ const Routers: React.FC = () => {
       <Route path="contact" element={<ContactPage />} />
       <Route path="payment" element={<PaymentPage />} />
       <Route path="event/:id" element={<EventDetailPage />} />
-      <Route path="success" element={<SuccessPage />} />
+      <Route path="success/:paymentId" element={<SuccessPage />} />
       {/* <Route path="/*" element={<PageNotFound />} /> */}
     </Routes>
   );
