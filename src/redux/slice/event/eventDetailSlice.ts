@@ -22,7 +22,7 @@ interface EventDetailState {
 }
 
 const initialState: EventDetailState = {
-  event: [],
+  event: null,
   loading: false,
 };
 

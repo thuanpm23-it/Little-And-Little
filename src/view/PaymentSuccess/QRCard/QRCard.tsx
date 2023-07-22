@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import QRCode from "qrcode.react";
-import Tick from "../../../images/tick.png";
 import "../QRCard/qrcard.css";
 import { DocumentData } from "firebase/firestore";
+import { images } from "../../../images/images";
 
 interface QRCardProps {
   ticket: DocumentData;
@@ -16,7 +16,7 @@ const QRCard: React.FC<QRCardProps> = ({ ticket }) => {
       <p className="paysucces-qr-text-1">VÉ CỔNG</p>
       <p className="paysucces-qr-text-2">---</p>
       <p className="paysucces-qr-text-3">Ngày sử dụng: {ticket.ticketDate}</p>
-      <img src={Tick} alt="QR" className="paysuccess-qr-tick" />
+      <img src={ticket.ticketTick} alt="QR" className="paysuccess-qr-tick" />
     </div>
   );
 };

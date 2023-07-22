@@ -1,14 +1,13 @@
 import React from "react";
-import logo from "../../images/logo.png";
-import icon from "../../images/icon.png";
 import "../../layout/Navbar/navbar.css";
 import { NavLink } from "react-router-dom";
+import { images } from "../../images/images";
 
 const NavBar: React.FC = () => {
   return (
     <div className="header-box">
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <img src={images[19].navbarLogo} alt="Logo" />
       </div>
 
       <div className="nav-box">
@@ -25,7 +24,7 @@ const NavBar: React.FC = () => {
 
       <div className="phone-box">
         <i className="phone-icon">
-          <img src={icon} alt="icon" />
+          <img src={images[20].navbarIcon} alt="icon" />
         </i>
         <i className="header-nav">0123456789</i>
       </div>

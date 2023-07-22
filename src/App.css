@@ -101,3 +101,69 @@
   line-height: 30px;
   opacity: 0.699999988079071;
 }
+
+@media only screen and (max-width: 1024px) {
+  .input-item {
+    padding: 17x;
+    font-size: 15px;
+  }
+
+  .icon-button {
+    width: 45px;
+    height: 45px;
+  }
+  .icons {
+    font-size: 25px;
+  }
+
+  .flag1-img {
+    position: absolute;
+    width: 32%;
+  }
+
+  .header-text {
+    font-size: 60px;
+    line-height: 50px;
+  }
+
+  .flag2-img {
+    position: absolute;
+
+    width: 32%;
+    top: 11%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .input-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .icon-button {
+    width: 40px;
+    height: 40px;
+  }
+  .icons {
+    font-size: 20px;
+  }
+  .wrapper {
+    height: 110%;
+  }
+
+  .main {
+    height: 100%;
+    padding-bottom: 50px;
+  }
+
+  .header-text {
+    font-size: 50px;
+    line-height: 50px;
+  }
+
+  .flag1-img,
+  .flag2-img {
+    display: none;
+  }
+}

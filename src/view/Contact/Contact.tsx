@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import "../../view/Contact/contact.css";
-import Avatar from "../../images/avatar2.png";
-import Telephone from "../../images/telephone.png";
-import Waze from "../../images/waze.png";
-import Mail from "../../images/mail-inbox-app.png";
 import { Modal } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { sendContactForm } from "../../redux/slice/contact/contactSlice";
 import { AppDispatch } from "../../redux/store";
 import { useDispatch } from "react-redux";
+import { images } from "./../../images/images";
 
 const ContactPage: React.FC = () => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -64,7 +61,7 @@ const ContactPage: React.FC = () => {
 
             <div className="contact-tab-box-text-2">
               <form onSubmit={handleSubmit}>
-                <div className="input-row">
+                <div className="input-row input-row-contact">
                   <input
                     placeholder="Tên"
                     value={name}
@@ -81,7 +78,7 @@ const ContactPage: React.FC = () => {
                     required
                   />
                 </div>
-                <div className="input-row my">
+                <div className="input-row input-row-contact my">
                   <input
                     placeholder="Số điện thoại"
                     value={phoneNumber}
@@ -123,7 +120,7 @@ const ContactPage: React.FC = () => {
           <div className="contact-tab-box">
             <div className="contact-tab-box-border">
               <div className="contact-img">
-                <img src={Waze} alt="" />
+                <img src={images[14].contactImg3} alt="" />
               </div>
               <div className="contact-text">
                 <p className="contact-text-1">Địa chỉ:</p>
@@ -136,7 +133,7 @@ const ContactPage: React.FC = () => {
           <div className="contact-tab-box">
             <div className="contact-tab-box-border">
               <div className="contact-img">
-                <img src={Mail} alt="" />
+                <img src={images[15].contactImg4} alt="" />
               </div>
               <div className="contact-text">
                 <p className="contact-text-1">Email:</p>
@@ -147,7 +144,7 @@ const ContactPage: React.FC = () => {
           <div className="contact-tab-box">
             <div className="contact-tab-box-border">
               <div className="contact-img">
-                <img src={Telephone} alt="" />
+                <img src={images[13].contactImg2} alt="" />
               </div>
               <div className="contact-text">
                 <p className="contact-text-1">Điện thoại</p>
@@ -158,7 +155,7 @@ const ContactPage: React.FC = () => {
         </div>
       </div>
       <div className="contact-picture-1">
-        <img src={Avatar} alt="Picture2" />
+        <img src={images[12].contactImg1} alt="Picture2" />
       </div>
       <Modal
         open={isSuccessModalOpen}

@@ -19,3 +19,12 @@
 .button-previous {
   margin-right: 13px;
 }
+
+@media only screen and (max-width: 768px) {
+  .card-main {
+    width: 80%;
+  }
+  .event-main-box {
+    margin-top: 0;
+  }
+}

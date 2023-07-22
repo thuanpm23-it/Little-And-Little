@@ -5,11 +5,10 @@ import EventCard from "../EventCard/EventCard";
 import { CaretRightFilled, CaretLeftFilled } from "@ant-design/icons";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Flag1 from "../../../images/flag1.png";
-import Flag2 from "../../../images/flag2.png";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchEvents } from "../../../redux/slice/event/eventSlice";
+import { images } from "../../../images/images";
 
 const EventPage: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
@@ -35,16 +34,32 @@ const EventPage: React.FC = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <>
       <div className="event-header-box">
-        <img src={Flag1} alt="Flag1" className="flag1-img" />
+        <img src={images[10].eventImg1} alt="Flag1" className="flag1-img" />
         <div className="header-text-box">
           <div className="header-text">Sự kiện nổi bật</div>
         </div>
-        <img src={Flag2} alt="Flag2" className="flag2-img" />
+        <img src={images[11].eventImg2} alt="Flag2" className="flag2-img" />
       </div>
       <div className="event-main-box">
         <div className="event-main">

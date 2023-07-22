@@ -1,20 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../SuccessPage/success.css";
-import Avatar4 from "../../../images/avatar4.png";
 import QRCard from "./../QRCard/QRCard";
 import { CaretLeftFilled, CaretRightFilled } from "@ant-design/icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {
-  DocumentData,
-  collection,
-  getDocs,
-  getFirestore,
-  where,
-  query,
-} from "firebase/firestore";
-import app from "../../../config/firebase";
 import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
@@ -22,12 +12,15 @@ import JSZip from "jszip";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchTickets } from "../../../redux/slice/success/successSlice";
+import { images } from "../../../images/images";
 
 const SuccessPage: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
-  // const [tickets, setTickets] = useState<DocumentData[]>([]);
   const { paymentId } = useParams();
   const qrCardsRef = useRef<HTMLDivElement>(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const tickets = useSelector((state: RootState) => state.success.tickets);
   const dispatch: AppDispatch = useDispatch();
@@ -37,23 +30,6 @@ const SuccessPage: React.FC = () => {
       dispatch(fetchTickets(paymentId));
     }
   }, [dispatch, paymentId]);
-
-  // useEffect(() => {
-  //   const fetchTickets = async () => {
-  //     try {
-  //       const db = getFirestore(app);
-  //       const ticketsRef = collection(db, "tickets");
-  //       const q = query(ticketsRef, where("paymentId", "==", paymentId));
-  //       const snapshot = await getDocs(q);
-  //       const ticketData = snapshot.docs.map((doc) => doc.data());
-  //       setTickets(ticketData);
-  //     } catch (error) {
-  //       console.error("Error fetching tickets: ", error);
-  //     }
-  //   };
-
-  //   fetchTickets();
-  // }, [paymentId]);
 
   const handleDownload = async () => {
     if (sliderRef.current && qrCardsRef.current) {
@@ -107,14 +83,56 @@ const SuccessPage: React.FC = () => {
     sliderRef.current?.slickNext();
   };
 
+  useEffect(() => {
+    setTotalPages(Math.ceil(tickets.length / 4));
+  }, [tickets]);
+
+  const handleSlideChange = (currentSlide: number) => {
+    setCurrentPage(Math.ceil(currentSlide / 4) + 1);
+  };
+
+  const getSlidesToShow = (page: number) => {
+    if (page === totalPages) {
+      return tickets.length % 4 || 4;
+    }
+    return 4;
+  };
+
   const settings = {
     dots: false,
     infinite: true,
     arrows: false,
-    speed: 500,
-    slidesToShow: Math.min(4, tickets.length),
+    speed: 400,
+    slidesToShow: getSlidesToShow(currentPage),
     slidesToScroll: 4,
+    afterChange: handleSlideChange,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
+
+  if (!tickets || tickets.length === 0) {
+    return (
+      <div className="paysuccess-header-box">
+        <div className="header-text-box">
+          <div className="header-text">Không tìm thấy thanh toán!</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -148,12 +166,14 @@ const SuccessPage: React.FC = () => {
               <p className="paysuccess-text-start">
                 Số lượng vé: {tickets.length}
               </p>
-              <p className="paysuccess-text-end">Trang 1/3</p>
+              <p className="paysuccess-text-end">
+                Trang {currentPage}/{totalPages}
+              </p>
             </div>
           </div>
         </div>
         <div className="paysuccess-picture">
-          <img src={Avatar4} alt="Avatar4" />
+          <img src={images[17].successImg1} alt="Avatar4" />
         </div>
       </div>
       <div className="paysuccess-bottom-box">

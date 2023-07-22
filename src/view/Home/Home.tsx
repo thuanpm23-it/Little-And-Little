@@ -1,24 +1,14 @@
 import React, { useRef, useState } from "react";
 import "../../view/Home/home.css";
-import HomeLogo from "../../images/damsen.png";
-import Star from "../../images/star.png";
-import Picture4 from "../../images/picture4.png";
-import Picture1 from "../../images/picture1.png";
-import Picture2 from "../../images/picture2.png";
-import Picture7 from "../../images/picture7.png";
-import Picture3 from "../../images/picture3.png";
-import Picture6 from "../../images/picture6.png";
-import Picture8 from "../../images/picture8.png";
-import Picture5 from "../../images/picture5.png";
-import { useDispatch } from "react-redux";
+import { images } from "../../images/images";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setBookingDetails } from "../../redux/bookingSlice";
+import { setBookingDetails } from "../../redux/slice/payment/bookingSlice";
 import { CalendarOutlined, CaretDownOutlined } from "@ant-design/icons";
+
 const HomePage: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [showDropdown, setShowDropdown] = useState(false);
   const [packageType, setPackageType] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [date, setDate] = useState("");
@@ -27,24 +17,6 @@ const HomePage: React.FC = () => {
   const [phone, setPhone] = useState("");
 
   const selectRef = useRef<HTMLSelectElement>(null);
-
-  // const handleButtonClick = () => {
-  //   setShowDropdown(!showDropdown);
-  //   selectRef.current.focus();
-  // };
-
-  // const handleOptionClick = (value) => {
-  //   setPackageType(value);
-  //   setShowDropdown(false);
-  // };
-  // const handleButtonClick = () => {
-  //   setShowDropdown(!showDropdown);
-  // };
-
-  // const handleOptionClick = () => {
-  //   setPackageType();
-  //   setShowDropdown(false);
-  // };
 
   const handleFormSubmit = () => {
     const bookingData = {
@@ -63,20 +35,20 @@ const HomePage: React.FC = () => {
     <>
       <div className="home-header-box">
         <div className="home-logo">
-          <img src={HomeLogo} alt="Home Logo" />
+          <img src={images[9].homeImgLogo} alt="Home Logo" />
         </div>
         <div>
           <div className="home-header-text-1">ĐẦM SEN</div>
-          <div className="home-header-text-1">PARK</div>
+          <div className="home-header-text-2">PARK</div>
         </div>
         <div className="home-picture-1">
-          <img src={Picture4} alt="Picture4" />
+          <img src={images[0].homeImg1} alt="Picture4" />
         </div>
         <div className="home-picture-2">
-          <img src={Picture5} alt="Picture5" />
+          <img src={images[7].homeImg8} alt="Picture5" />
         </div>
         <div className="home-picture-3">
-          <img src={Picture1} alt="Picture1" />
+          <img src={images[1].homeImg2} alt="Picture1" />
         </div>
       </div>
       <div className="home-main-box">
@@ -96,19 +68,19 @@ const HomePage: React.FC = () => {
 
             <div className="home-tab-box-text-2">
               <div className="text-row">
-                <img src={Star} alt="Star" />
+                <img src={images[8].homeImg9} alt="Star" />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
               <div className="text-row">
-                <img src={Star} alt="Star" />
+                <img src={images[8].homeImg9} alt="Star" />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
               <div className="text-row">
-                <img src={Star} alt="Star" />
+                <img src={images[8].homeImg9} alt="Star" />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
               <div className="text-row">
-                <img src={Star} alt="Star" />
+                <img src={images[8].homeImg9} alt="Star" />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
             </div>
@@ -149,31 +121,9 @@ const HomePage: React.FC = () => {
                     <option value="Gia đình">Gói gia đình</option>
                     <option value="Đơn">Gói đơn</option>
                   </select>
-                  <button
-                    type="button"
-                    className="icon-button"
-                    // onClick={() => {
-                    //   setShowDropdown(!showDropdown);
-                    //   selectRef.current?.focus();
-                    // }}
-                  >
+                  <button type="button" className="icon-button">
                     <CaretDownOutlined className="icons" />
                   </button>
-                  {/* <select
-                    ref={selectRef}
-                    value={packageType}
-                    onChange={(e) => setPackageType(e.target.value)}
-                    className="input-item home-input-1"
-                    required
-                  >
-                    {showDropdown && (
-                      <>
-                        <option value="">--- Chọn loại gói ---</option>
-                        <option value="Gia đình">Gói gia đình</option>
-                        <option value="Đơn">Gói đơn</option>
-                      </>
-                    )}
-                  </select> */}
                 </div>
                 <div className="input-row">
                   <input
@@ -183,6 +133,7 @@ const HomePage: React.FC = () => {
                     onChange={(e) => setQuantity(Number(e.target.value))}
                     className="input-item home-input-2"
                     required
+                    min="1"
                   />
                   <div className="input-row">
                     <input
@@ -192,6 +143,7 @@ const HomePage: React.FC = () => {
                       className="input-item home-input-3"
                       type="date"
                       required
+                      min={new Date().toISOString().slice(0, 10)}
                     />
                     <button className="icon-button">
                       <CalendarOutlined className="icons" />
@@ -232,19 +184,19 @@ const HomePage: React.FC = () => {
           </div>
         </div>
         <div className="home-picture-5">
-          <img src={Picture7} alt="Picture7" />
+          <img src={images[3].homeImg4} alt="Picture7" />
         </div>
         <div className="home-picture-6">
-          <img src={Picture6} alt="Picture6" />
+          <img src={images[5].homeImg6} alt="Picture6" />
         </div>
         <div className="home-picture-7">
-          <img src={Picture3} alt="Picture3" />
+          <img src={images[4].homeImg5} alt="Picture3" />
         </div>
         <div className="home-picture-8">
-          <img src={Picture8} alt="Picture8" />
+          <img src={images[6].homeImg7} alt="Picture8" />
         </div>
         <div className="home-picture-4">
-          <img src={Picture2} alt="Picture2" />
+          <img src={images[2].homeImg3} alt="Picture2" />
         </div>
       </div>
     </>

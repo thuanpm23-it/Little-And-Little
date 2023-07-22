@@ -217,10 +217,8 @@
 }
 
 .home-picture-3 {
-  width: 600px;
-  height: 400px;
   position: absolute;
-  left: 49%;
+  left: 48.1%;
   /* bottom: 31%; */
   bottom: 36%;
 }
@@ -267,4 +265,277 @@
   left: 40%;
   /* bottom: -435px; */
   bottom: -378px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .home-picture-1,
+  .home-picture-2,
+  .home-picture-5,
+  .home-picture-6,
+  .home-picture-7,
+  .home-picture-8 img {
+    display: none;
+  }
+
+  .home-picture-3 {
+    position: absolute;
+    left: 42%;
+    bottom: 60%;
+  }
+
+  .home-picture-4 {
+    position: absolute;
+    top: 72%;
+    left: -50px;
+    z-index: 6;
+  }
+
+  .home-picture-3 img {
+    width: 110%;
+  }
+
+  .home-picture-4 img {
+    width: 60%;
+  }
+
+  .home-header-box {
+    padding: 70px 0 50px 35px;
+  }
+  .home-logo {
+    padding-right: 0;
+  }
+
+  .home-logo img {
+    width: 90%;
+  }
+
+  .home-header-text-1 {
+    font-size: 55px;
+    line-height: 65px;
+  }
+
+  .home-header-text-2 {
+    font-size: 55px;
+    line-height: 65px;
+  }
+
+  .home-vector svg {
+    width: 94.2%;
+  }
+
+  .home-vector {
+    margin-right: -72px;
+  }
+
+  .home-tab-box-1 {
+    width: 380px;
+    height: 550px;
+    border-radius: 30px;
+    z-index: 4;
+  }
+
+  .home-tab-box-border-1 {
+    width: 95%;
+    height: 96%;
+  }
+
+  .home-tab-box-text-1 {
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  .home-tab-box-text-2 {
+    margin-top: -20px;
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .text-row p {
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+  .home-tab-box-2 {
+    width: 300px;
+    height: 550px;
+  }
+
+  .home-tab-box-border-2 {
+    width: 95%;
+    height: 96%;
+  }
+
+  .home-tag {
+    width: 60%;
+    height: 60px;
+    margin-left: 20%;
+  }
+  .home-tag-border {
+    width: 94%;
+    height: 50px;
+  }
+
+  .home-tag-text {
+    font-size: 22px;
+  }
+
+  .home-input-box {
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+
+  .home-input-1 {
+    width: 75%;
+  }
+
+  .home-input-2 {
+    width: 30px;
+  }
+
+  .home-input-3 {
+    width: 33%;
+    margin-left: 12px;
+  }
+
+  .home-input-4 {
+    width: 83%;
+  }
+
+  .home-button-box {
+    margin-top: 5%;
+    margin-left: 18%;
+  }
+
+  .home-button-wh {
+    width: 80%;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .home-picture-1,
+  .home-picture-2,
+  .home-picture-3,
+  .home-picture-4,
+  .home-picture-5,
+  .home-picture-6,
+  .home-picture-7,
+  .home-picture-8 img {
+    display: none;
+  }
+
+  .home-header-box {
+    display: block;
+    padding: 50px 0 0 0;
+    text-align: center;
+  }
+
+  .home-logo img {
+    width: 40%;
+  }
+
+  .home-header-text-1 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .home-header-text-2 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .home-vector {
+    display: none;
+  }
+
+  .home-main-box {
+    display: block;
+  }
+
+  .home-tab-box-1 {
+    width: 100%;
+    height: 480px;
+    border-radius: 30px;
+    z-index: 4;
+  }
+
+  .home-tab-box-border-1 {
+    width: 95%;
+    height: 96%;
+  }
+
+  .home-tab-box-text-1 {
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 10px;
+    font-size: 10px;
+  }
+
+  .home-tab-box-text-2 {
+    margin-top: -20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .text-row p {
+    margin-left: 5px;
+    font-size: 12px;
+  }
+
+  .home-tab-box-2 {
+    width: 100%;
+    height: 460px;
+    margin-top: 30px;
+  }
+
+  .home-tab-box-border-2 {
+    width: 95%;
+    height: 96%;
+  }
+
+  .home-tag {
+    width: 50%;
+    height: 60px;
+    margin-left: 25%;
+  }
+  .home-tag-border {
+    width: 94%;
+    height: 50px;
+  }
+
+  .home-tag-text {
+    font-size: 20px;
+  }
+
+  .home-input-box {
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+
+  .home-input-1 {
+    width: 79%;
+  }
+
+  .home-input-2 {
+    width: 20%;
+  }
+
+  .home-input-3 {
+    width: 53%;
+    margin-left: 12px;
+  }
+
+  .home-button-box {
+    margin-top: 2%;
+    margin-left: 15%;
+  }
+
+  .home-button-wh {
+    width: 80%;
+    height: 40px;
+    font-size: 22px;
+  }
 }

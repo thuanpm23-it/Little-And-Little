@@ -43,3 +43,43 @@
   border-radius: 33px;
   border: 2px solid var(--w, #fff);
 }
+
+@media only screen and (max-width: 768px) {
+  .header-box {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+    border-radius: 0;
+  }
+
+  .logo img {
+    content: url("https://firebasestorage.googleapis.com/v0/b/little-and-little-6a2f9.appspot.com/o/Little%20%26%20Little%20Logo%20(dung)%201.png?alt=media&token=27359e0e-9dd2-4b20-8fa6-819db81b0453");
+  }
+
+  .nav-box {
+    margin: 20px 0;
+  }
+  .header-nav {
+    font-size: 9px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .nav-box {
+    gap: 0 40px;
+    margin-left: 0;
+  }
+
+  .header-nav {
+    font-size: 12px;
+  }
+
+  .logo img {
+    width: 70%;
+  }
+
+  .header-box {
+    align-items: center;
+  }
+}

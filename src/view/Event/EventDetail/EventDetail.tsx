@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import "../../Event/EventDetail/eventdetail.css";
 import { useParams } from "react-router-dom";
-import Flag1 from "../../../images/flag1.png";
-import Flag2 from "../../../images/flag2.png";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchEventDetail } from "../../../redux/slice/event/eventDetailSlice";
+import { images } from "../../../images/images";
 
 const EventDetailPage: React.FC = () => {
   const { id } = useParams();
@@ -23,14 +22,24 @@ const EventDetailPage: React.FC = () => {
     return <div></div>;
   }
 
+  if (!event) {
+    return (
+      <div className="eventdetail-header-box">
+        <div className="header-text-box">
+          <div className="header-text">Sự kiện không tồn tại!</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="eventdetail-header-box">
-        <img src={Flag1} alt="Flag1" className="flag1-img" />
+        <img src={images[10].eventImg1} alt="Flag1" className="flag1-img" />
         <div className="header-text-box">
           <div className="header-text">{event.title}</div>
         </div>
-        <img src={Flag2} alt="Flag2" className="flag2-img" />
+        <img src={images[11].eventImg2} alt="Flag2" className="flag2-img" />
       </div>
       <div className="eventdetail-main-box">
         <div className="eventdetail-main">

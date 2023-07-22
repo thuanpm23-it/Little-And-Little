@@ -7,7 +7,6 @@ import {
   getDocs,
 } from "firebase/firestore";
 import app from "../../../config/firebase";
-// import { RootState } from "../../../store";
 
 export const fetchTickets = createAsyncThunk(
   "success/fetchTickets",
@@ -44,7 +43,5 @@ const successSlice = createSlice({
     });
   },
 });
-
-// export const selectTickets = (state: RootState) => state.success.tickets;
 
 export default successSlice.reducer;
