@@ -162,15 +162,15 @@ const PaymentPage: React.FC = () => {
     }
   };
 
-  // if (!bookingDetails || bookingDetails.quantity === 0) {
-  //   return (
-  //     <div className="payment-header-box">
-  //       <div className="header-text-box">
-  //         <div className="header-text">Vui lòng điền thông tin thanh toán!</div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  if (!bookingDetails || bookingDetails.quantity === 0) {
+    return (
+      <div className="payment-header-box">
+        <div className="header-text-box">
+          <div className="header-text">Vui lòng điền thông tin thanh toán!</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

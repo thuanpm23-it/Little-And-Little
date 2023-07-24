@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchTickets } from "../../../redux/slice/success/successSlice";
 import { images } from "../../../images/images";
+import emailjs from "emailjs-com";
 
 const SuccessPage: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
@@ -25,6 +26,8 @@ const SuccessPage: React.FC = () => {
   const tickets = useSelector((state: RootState) => state.success.tickets);
   const dispatch: AppDispatch = useDispatch();
 
+  let folder: JSZip | null = new JSZip();
+  let zip: JSZip | null = new JSZip();
   useEffect(() => {
     if (paymentId) {
       dispatch(fetchTickets(paymentId));
@@ -63,8 +66,8 @@ const SuccessPage: React.FC = () => {
   };
 
   const downloadAllImages = (images: any) => {
-    const zip = new JSZip();
-    const folder = zip.folder("qr_cards");
+    zip = new JSZip();
+    folder = zip.folder("qr_cards");
 
     images.forEach((image: any, index: any) => {
       const fileName = `qr_card_${index + 1}.png`;
@@ -124,7 +127,39 @@ const SuccessPage: React.FC = () => {
     ],
   };
 
-  if (!tickets || tickets.length === 0) {
+  const nodemailer = require("nodemailer");
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "mthuannnn91@gmail.com",
+      pass: "A0rdshcspct#",
+    },
+  });
+
+  const sendEmail = async () => {
+    try {
+      const mailOptions = {
+        from: "mthuannnn91@gmail.com",
+        to: "dzai01294436023@gmail.com",
+        subject: "Tiêu đề email",
+        text: "Nội dung email",
+        attachments: [
+          {
+            filename: "qr_cards.zip",
+            path: "",
+          },
+        ],
+      };
+
+      const info = await transporter.sendMail(mailOptions);
+      console.log("Email đã được gửi thành công:", info.response);
+    } catch (error) {
+      console.error("Gửi email lỗi:", error);
+    }
+  };
+
+  if (!tickets || !tickets.length) {
     return (
       <div className="paysuccess-header-box">
         <div className="header-text-box">
@@ -184,7 +219,11 @@ const SuccessPage: React.FC = () => {
         >
           Tải về
         </button>
-        <button type="submit" className="button-item paysuccess-button-wh">
+        <button
+          type="submit"
+          className="button-item paysuccess-button-wh"
+          onClick={sendEmail}
+        >
           Gửi Email
         </button>
       </div>
