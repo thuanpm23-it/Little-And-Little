@@ -5,10 +5,10 @@ import { AppDispatch, RootState } from "../../redux/store";
 import { CalendarOutlined } from "@ant-design/icons";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import app from "../../config/firebase";
-import { Modal } from "antd";
+// import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { fetchBanks } from "../../redux/slice/payment/banksSlice";
-import { images } from "../../images/images";
+import { images } from "../../assets/images/images";
 import {
   updateQuantity,
   updateDate,
@@ -16,7 +16,12 @@ import {
   updateEmail,
   updatePhone,
 } from "../../redux/slice/payment/bookingSlice";
-import { format } from "date-fns";
+
+import { Modal } from "antd";
+
+// import { Modal } from "react-bootstrap";
+// import { format } from "date-fns";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const PaymentPage: React.FC = () => {
   const bookingDetails = useSelector((state: RootState) => state.booking);
@@ -347,8 +352,12 @@ const PaymentPage: React.FC = () => {
         cancelButtonProps={{ style: { display: "none" } }}
         okButtonProps={{ style: { display: "none" } }}
         closable={false}
+        className="custom-modal"
       >
-        <p className="modal-t">
+        <div className="modal-h">
+          <img src={images[21].paymentImg2} alt="" />
+        </div>
+        <p className="modal-t mt">
           Hình như đã có lỗi xảy ra khi thanh toán... <br /> Vui lòng kiểm tra
           lại thông tin liên hệ, thông tin thẻ và thử lại.
         </p>

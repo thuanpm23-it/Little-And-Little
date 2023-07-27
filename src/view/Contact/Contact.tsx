@@ -5,7 +5,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import { sendContactForm } from "../../redux/slice/contact/contactSlice";
 import { AppDispatch } from "../../redux/store";
 import { useDispatch } from "react-redux";
-import { images } from "./../../images/images";
+import { images } from "../../assets/images/images";
 
 const ContactPage: React.FC = () => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);

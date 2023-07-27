@@ -87,4 +87,9 @@ export const images = [
     navbarIcon:
       "https://firebasestorage.googleapis.com/v0/b/little-and-little-6a2f9.appspot.com/o/icon.png?alt=media&token=f7e46ba5-b64f-43b5-b71b-d196cf8c5609",
   },
+
+  {
+    paymentImg2:
+      "https://firebasestorage.googleapis.com/v0/b/little-and-little-6a2f9.appspot.com/o/sadface%20(1).png?alt=media&token=f0dc64eb-3fba-4f06-ac7b-50e16dd117c4",
+  },
 ];

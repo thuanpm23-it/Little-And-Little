@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchEvents } from "../../../redux/slice/event/eventSlice";
-import { images } from "../../../images/images";
+import { images } from "../../../assets/images/images";
 
 const EventPage: React.FC = () => {
   const sliderRef = useRef<Slider>(null);

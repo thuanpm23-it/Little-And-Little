@@ -218,6 +218,32 @@ span {
   font-size: 28px;
 }
 
+.custom-modal {
+  width: 100px;
+}
+
+.custom-modal .ant-modal-content {
+  border-radius: 25px;
+  width: 450px;
+}
+
+.modal-h {
+  background-color: #ff8b15;
+  height: 25px;
+  box-shadow: 0 0 0px 24px #ff8b15;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+}
+
+.modal-h img {
+  width: 112px;
+  height: 112px;
+  margin-top: -80px;
+}
+.mt {
+  margin-top: 30px;
+}
 @media only screen and (max-width: 1024px) {
   .payment-vector {
     display: none;

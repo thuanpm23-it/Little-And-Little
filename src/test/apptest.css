@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "iCiel Koni";
+  src: url("../assets/fonts/iCielKoni.ttf") format("truetype");
+}
+
+.bg {
+  background: #f9b842;
+  height: 1100px;
+}
+
+.bg-main {
+  background: linear-gradient(
+    0deg,
+    #ff8b2c 1.71%,
+    #ff8d2a 4.22%,
+    #ffa413 37.82%,
+    #ffb105 69.39%,
+    #ffb600 96.65%
+  );
+  border-radius: 20px;
+  height: 960px;
+  width: 93%;
+  margin: -30px auto 0;
+}
+
+.nav-box {
+  position: relative;
+  z-index: 10;
+}

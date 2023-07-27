@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "../../view/Home/home.css";
-import { images } from "../../images/images";
-import { useDispatch, useSelector } from "react-redux";
+import { images } from "../../assets/images/images";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setBookingDetails } from "../../redux/slice/payment/bookingSlice";
 import { CalendarOutlined, CaretDownOutlined } from "@ant-design/icons";

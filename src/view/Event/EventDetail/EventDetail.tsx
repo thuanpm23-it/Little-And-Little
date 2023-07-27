@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchEventDetail } from "../../../redux/slice/event/eventDetailSlice";
-import { images } from "../../../images/images";
+import { images } from "../../../assets/images/images";
 
 const EventDetailPage: React.FC = () => {
   const { id } = useParams();

@@ -12,8 +12,9 @@ import JSZip from "jszip";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchTickets } from "../../../redux/slice/success/successSlice";
-import { images } from "../../../images/images";
-import emailjs from "emailjs-com";
+import { images } from "../../../assets/images/images";
+import axios from "axios";
+import { Input, Modal } from "antd";
 
 const SuccessPage: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
@@ -35,33 +36,25 @@ const SuccessPage: React.FC = () => {
   }, [dispatch, paymentId]);
 
   const handleDownload = async () => {
-    if (sliderRef.current && qrCardsRef.current) {
-      const sliderElement = sliderRef.current;
-      const qrCardsElement = qrCardsRef.current;
+    const downloadedImages: any[] = [];
 
-      const downloadedImages: any[] = [];
+    for (let i = 0; i < tickets.length; i++) {
+      const qrCardElement = document.querySelector(
+        `.slick-slide[data-index="${i}"]`
+      ) as HTMLElement;
 
-      for (let i = 0; i < tickets.length; i++) {
-        sliderElement.slickGoTo(i);
+      const canvas = await html2canvas(qrCardElement);
+      const blob = await new Promise((resolve) => {
+        canvas.toBlob((blob) => resolve(blob));
+      });
 
-        await new Promise((resolve) => setTimeout(resolve, 500));
-
-        const qrCardElement = qrCardsElement.getElementsByClassName(
-          "slick-current"
-        )[0] as HTMLElement;
-        const canvas = await html2canvas(qrCardElement);
-        const blob = await new Promise((resolve) => {
-          canvas.toBlob((blob) => resolve(blob));
-        });
-
-        if (blob) {
-          downloadedImages.push(blob);
-        }
+      if (blob) {
+        downloadedImages.push(blob);
       }
+    }
 
-      if (downloadedImages.length > 0) {
-        downloadAllImages(downloadedImages);
-      }
+    if (downloadedImages.length > 0) {
+      downloadAllImages(downloadedImages);
     }
   };
 
@@ -127,35 +120,97 @@ const SuccessPage: React.FC = () => {
     ],
   };
 
-  const nodemailer = require("nodemailer");
+  const [isEmailModalVisible, setIsEmailModalVisible] = useState(false);
+  const [emailRecipient, setEmailRecipient] = useState("");
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "mthuannnn91@gmail.com",
-      pass: "A0rdshcspct#",
-    },
-  });
+  const handleSendEmail = async () => {
+    setIsEmailModalVisible(false);
+    const sendMailImages: any[] = [];
 
-  const sendEmail = async () => {
-    try {
-      const mailOptions = {
-        from: "mthuannnn91@gmail.com",
-        to: "dzai01294436023@gmail.com",
-        subject: "Tiêu đề email",
-        text: "Nội dung email",
-        attachments: [
-          {
-            filename: "qr_cards.zip",
-            path: "",
-          },
-        ],
-      };
+    for (let i = 0; i < tickets.length; i++) {
+      const qrCardElement = document.querySelector(
+        `.slick-slide[data-index="${i}"]`
+      ) as HTMLElement;
 
-      const info = await transporter.sendMail(mailOptions);
-      console.log("Email đã được gửi thành công:", info.response);
-    } catch (error) {
-      console.error("Gửi email lỗi:", error);
+      const canvas = await html2canvas(qrCardElement);
+      const blob = await new Promise((resolve) => {
+        canvas.toBlob((blob) => resolve(blob));
+      });
+
+      if (blob) {
+        sendMailImages.push(blob);
+      }
+    }
+
+    // const promises = tickets.map(async (ticket, i) => {
+    //   const qrCardElement = document.querySelector(
+    //     `.slick-slide[data-index="${i}"]`
+    //   ) as HTMLElement;
+
+    //   const canvas = await html2canvas(qrCardElement);
+    //   return new Promise((resolve) => {
+    //     canvas.toBlob((blob) => resolve(blob));
+    //   });
+    // });
+
+    // const blobs = await Promise.all(promises);
+
+    // sendMailImages.push(...blobs);
+
+    if (sendMailImages.length > 0) {
+      sendEmail(sendMailImages);
+    }
+  };
+
+  const sendEmail = async (images: any) => {
+    // const recipient = window.prompt("Nhập địa chỉ email người nhận:");
+
+    if (emailRecipient) {
+      if (images.length > 0) {
+        zip = new JSZip();
+        folder = zip.folder("qr_cards");
+
+        images.forEach((image: any, index: any) => {
+          const fileName = `qr_card_${index + 1}.png`;
+          folder!.file(fileName, image);
+        });
+
+        zip.generateAsync({ type: "blob" }).then(async (content) => {
+          const formData = new FormData();
+          formData.append("to", emailRecipient);
+          formData.append("subject", "Gửi bạn danh sách vé");
+          formData.append("text", "Hãy tải về để xem danh sách vé:");
+          formData.append("attachment", content, "qr_cards.zip");
+
+          try {
+            const response = await axios.post(
+              "http://localhost:8000/send-email",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            );
+
+            const data = response.data;
+            console.log(data.message);
+
+            Modal.success({
+              content: "Vé đã gửi qua email của bạn.",
+            });
+          } catch (error) {
+            console.error("Đã xảy ra lỗi:", error);
+
+            Modal.error({
+              content: "Chưa gửi được vé! Hãy kiểm tra lại email.",
+            });
+          }
+        });
+      } else {
+        console.log("Không có hình ảnh nào để gửi");
+      }
+      setEmailRecipient("");
     }
   };
 
@@ -222,11 +277,24 @@ const SuccessPage: React.FC = () => {
         <button
           type="submit"
           className="button-item paysuccess-button-wh"
-          onClick={sendEmail}
+          onClick={() => setIsEmailModalVisible(true)}
         >
           Gửi Email
         </button>
       </div>
+
+      <Modal
+        title="Nhập địa chỉ email người nhận:"
+        open={isEmailModalVisible}
+        onOk={handleSendEmail}
+        onCancel={() => setIsEmailModalVisible(false)}
+      >
+        <Input
+          type="text"
+          value={emailRecipient}
+          onChange={(e) => setEmailRecipient(e.target.value)}
+        />
+      </Modal>
     </>
   );
 };

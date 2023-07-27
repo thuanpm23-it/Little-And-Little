@@ -2,7 +2,6 @@ import React from "react";
 import QRCode from "qrcode.react";
 import "../QRCard/qrcard.css";
 import { DocumentData } from "firebase/firestore";
-import { images } from "../../../images/images";
 
 interface QRCardProps {
   ticket: DocumentData;
