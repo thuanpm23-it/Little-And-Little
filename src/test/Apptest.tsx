@@ -7,10 +7,10 @@ function AppTest() {
   return (
     <>
       <div className="bg">
-        <div className="nav-box">
+        <div className="nav__box">
           <Navbar />
         </div>
-        <div className="bg-main">
+        <div className="bg__main">
           <Routers />
         </div>
       </div>

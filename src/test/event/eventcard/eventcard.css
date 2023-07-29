@@ -1,0 +1,48 @@
+.card__button {
+  height: 40px;
+  font-size: 18px;
+}
+
+.title__custom {
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.location__custom {
+  color: #6c7272;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+.card__text {
+  color: #444;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.price__custom {
+  color: #fa7d09;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card__custom {
+  width: 280px;
+}

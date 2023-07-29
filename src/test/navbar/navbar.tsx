@@ -15,17 +15,17 @@ const Navbar = () => {
             <div className="col navbar-expand d-flex justify-content-center align-items-center nav__ds">
               <ul className="navbar-nav navbar__custom">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/">
+                  <NavLink className="nav-link" to="/home">
                     Trang chủ
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/">
+                  <NavLink className="nav-link" to="/event">
                     Sự kiện
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/">
+                  <NavLink className="nav-link" to="/contact">
                     Liên hệ
                   </NavLink>
                 </li>

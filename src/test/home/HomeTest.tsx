@@ -1,26 +1,60 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "../home/hometest.css";
 import { images } from "../../assets/images/images";
 import { CalendarOutlined, CaretDownOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setBookingDetails } from "../../redux/slice/payment/bookingSlice";
 
 const HomeTest = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [packageType, setPackageType] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [date, setDate] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const selectRef = useRef<HTMLSelectElement>(null);
+
+  const handleFormSubmit = () => {
+    const bookingData = {
+      packageType,
+      quantity,
+      date,
+      fullName,
+      email,
+      phone,
+    };
+
+    dispatch(setBookingDetails(bookingData));
+    navigate("/payment");
+  };
   return (
     <>
       <div className="container">
-        <div className="row pt-5 align-items-center ">
-          <div className="col-2">
+        <div className="row pt-5 pb-4 align-items-center ">
+          <div className="col d-flex">
             <img src={images[9].homeImgLogo} alt="" />
+
+            <div className="ms-3">
+              <div className="logo__text">ĐẦM SEN</div>
+              <div className="logo__text">PARK</div>
+            </div>
           </div>
+
           <div className="col">
-            <div className="logo__text">ĐẦM SEN</div>
-            <div className="logo__text">PARK</div>
+            <img src={images[0].homeImg1} alt="img" className="home__img__1" />
+            <img src={images[7].homeImg8} alt="img" className="home__img__2" />
+            <img src={images[1].homeImg2} alt="img" className="home__img__3" />
           </div>
         </div>
         <div className="row mt-5 align-items-center ">
           <div className="col-6">
-            <div className="home__box__1 ">
+            <div className="home__box__1">
               <div className="home__border__1">
-                <p className="text__1 mx-4 mt-4">
+                <p className="text__1 mx-5 mt-5">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Suspendisse ac mollis justo. Etiam volutpat tellus quis risus
                   volutpat, ut posuere ex facilisis.
@@ -31,7 +65,7 @@ const HomeTest = () => {
                   consequat a.
                 </p>
 
-                <div className="text__box  pt-3">
+                <div className="text__box ps-5 pt-3">
                   <div className="d-flex align-items-center justify-content-center">
                     <img src={images[8].homeImg9} alt="Star" className="me-1" />
                     <span className="text__2 ">
@@ -84,30 +118,87 @@ const HomeTest = () => {
                     <div className="tag__text">VÉ CỦA BẠN</div>
                   </div>
                 </div>
-
-                <div className="home__input__box mx-3 mt-4">
-                  <div className="d-flex ">
-                    <input type="text" className="input__item w-100 me-2" />
-                    <div className="icon__box align-items-center justify-content-center d-flex">
-                      <CaretDownOutlined className="icon__custom" />
+                <form onSubmit={handleFormSubmit}>
+                  <div className="home__input__box mx-3 mt-4">
+                    <div className="d-flex ">
+                      <select
+                        ref={selectRef}
+                        value={packageType}
+                        onChange={(e) => setPackageType(e.target.value)}
+                        className="select__item w-100 me-2"
+                        required
+                      >
+                        <option value=""></option>
+                        <option value="Gia đình">Gói gia đình</option>
+                        <option value="Đơn">Gói đơn</option>
+                      </select>
+                      <div className="icon__box align-items-center justify-content-center d-flex">
+                        <CaretDownOutlined className="icon__custom" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="d-flex mt-4">
-                    <input type="text" className="input__item w-25 me-2" />
-                    <input type="text" className="input__item w-75 me-2" />
-                    <div className="icon__box align-items-center justify-content-center d-flex">
-                      <CalendarOutlined className="icon__custom" />
+                    <div className="d-flex mt-4">
+                      <input
+                        className="input__item w-25 me-2"
+                        value={quantity}
+                        type="number"
+                        onChange={(e) => setQuantity(Number(e.target.value))}
+                        required
+                        min="1"
+                      />
+                      <input
+                        className="input__item w-75 me-2"
+                        placeholder="Ngày sử dụng"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        type="date"
+                        required
+                        min={new Date().toISOString().slice(0, 10)}
+                      />
+                      <div className="icon__box align-items-center justify-content-center d-flex">
+                        <CalendarOutlined className="icon__custom" />
+                      </div>
                     </div>
+                    <input
+                      type="text"
+                      className="input__item w-100 mt-4"
+                      placeholder="Họ và tên"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      required
+                    />
+                    <input
+                      type="tel"
+                      className="input__item w-100 mt-4"
+                      placeholder="Số điện thoại"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                    />
+                    <input
+                      className="input__item w-100 mt-4"
+                      placeholder="Địa chỉ email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="email"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="button__item home__button w-75 mt-4"
+                    >
+                      Đặt vé
+                    </button>
                   </div>
-                  <input type="text" className="input__item w-100 mt-4" />
-                  <input type="text" className="input__item w-100 mt-4" />
-                  <input type="text" className="input__item w-100 mt-4" />
-                  <button className="button__item button__custom w-75 mt-4 ms-5">
-                    Đặt vé
-                  </button>
-                </div>
+                </form>
               </div>
             </div>
+          </div>
+          <div className="col">
+            <img src={images[2].homeImg3} alt="img" className="home__img__4" />
+            <img src={images[3].homeImg4} alt="img" className="home__img__5" />
+            <img src={images[5].homeImg6} alt="img" className="home__img__6" />
+            <img src={images[6].homeImg7} alt="img" className="home__img__7" />
+            <img src={images[4].homeImg5} alt="img" className="home__img__8" />
           </div>
         </div>
       </div>
