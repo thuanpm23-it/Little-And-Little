@@ -1,85 +1,28 @@
-.header-box {
-  display: flex;
-  height: 110px;
-  fill: #ed7200;
-  filter: drop-shadow(0px 4px 35px rgba(161, 58, 0, 0.75));
-  background-color: #ed7200;
-  border-radius: 50% / 0 0 25px 25px;
+.bg__nav {
+  background: #ed7200;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  justify-content: center;
+  border-radius: 50% / 0 0 25px 25px;
+  fill: #ed7200;
+  filter: drop-shadow(0px 4px 35px rgba(161, 58, 0, 0.75));
 }
 
-.header-nav {
-  text-decoration: none;
+.nav__ds {
   color: var(--w, #fff);
   font-family: "Montserrat";
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  /* opacity: 0.9; */
 }
 
-.nav-box {
-  align-items: center;
-  gap: 0 80px;
-  display: flex;
-  margin-left: 10%;
-  margin-right: 10%;
+.navbar__custom {
+  gap: 0 65px;
 }
 
-.phone-icon {
-  align-items: center;
-  margin-right: 5px;
-}
-
-.phone-box {
-  display: flex;
-  align-items: center;
-}
-
-.header-nav.active {
-  padding: 10px 24px;
+.nav-link.active {
   border-radius: 33px;
+  padding: 10px 24px !important;
   border: 2px solid var(--w, #fff);
-}
-
-@media only screen and (max-width: 768px) {
-  .header-box {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-    padding: 20px;
-    border-radius: 0;
-  }
-
-  .logo img {
-    content: url("https://firebasestorage.googleapis.com/v0/b/little-and-little-6a2f9.appspot.com/o/Little%20%26%20Little%20Logo%20(dung)%201.png?alt=media&token=27359e0e-9dd2-4b20-8fa6-819db81b0453");
-  }
-
-  .nav-box {
-    margin: 20px 0;
-  }
-  .header-nav {
-    font-size: 9px;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .nav-box {
-    gap: 0 40px;
-    margin-left: 0;
-  }
-
-  .header-nav {
-    font-size: 12px;
-  }
-
-  .logo img {
-    width: 70%;
-  }
-
-  .header-box {
-    align-items: center;
-  }
 }

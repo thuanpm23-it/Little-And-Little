@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface BookingState {
   packageType: string;
   quantity: number;
-  date: string;
+  date: Date;
   fullName: string;
   email: string;
   phone: string;
@@ -12,7 +12,7 @@ interface BookingState {
 const initialState: BookingState = {
   packageType: "",
   quantity: 0,
-  date: "",
+  date: new Date(),
   fullName: "",
   email: "",
   phone: "",
@@ -31,7 +31,7 @@ const bookingSlice = createSlice({
     updateQuantity: (state, action: PayloadAction<number>) => {
       state.quantity = action.payload;
     },
-    updateDate: (state, action: PayloadAction<string>) => {
+    updateDate: (state, action: PayloadAction<Date>) => {
       state.date = action.payload;
     },
     updateFullName: (state, action: PayloadAction<string>) => {

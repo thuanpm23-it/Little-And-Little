@@ -19,11 +19,11 @@ const EventPage: React.FC = () => {
     dispatch(fetchEvents());
   }, [dispatch]);
 
-  const previous = () => {
+  const handlePev = () => {
     sliderRef.current?.slickPrev();
   };
 
-  const next = () => {
+  const handleNext = () => {
     sliderRef.current?.slickNext();
   };
 
@@ -53,34 +53,38 @@ const EventPage: React.FC = () => {
   };
 
   return (
-    <>
-      <div className="event-header-box">
-        <img src={images[10].eventImg1} alt="Flag1" className="flag1-img" />
-        <div className="header-text-box">
-          <div className="header-text">Sự kiện nổi bật</div>
-        </div>
-        <img src={images[11].eventImg2} alt="Flag2" className="flag2-img" />
+    <div className="container">
+      <img src={images[10].eventImg1} alt="Flag1" className="flag__img__1" />
+      <div className="row text-center pt-5 pb-5">
+        <div className="text__title">Sự kiện nổi bật</div>
       </div>
-      <div className="event-main-box">
-        <div className="event-main">
-          <button className="icon-button button-previous" onClick={previous}>
-            <CaretLeftFilled className="icons" />
-          </button>
-          <div className="card-main">
-            <Slider ref={sliderRef} {...settings}>
-              {events.map((event) => (
-                <div key={event.id}>
-                  <EventCard event={event} />
-                </div>
-              ))}
-            </Slider>
-          </div>
-          <button className="icon-button" onClick={next}>
-            <CaretRightFilled className="icons" />
-          </button>
+      <img src={images[11].eventImg2} alt="Flag2" className="flag__img__2" />
+      <div className="mt-5 d-flex align-items-center justify-content-center">
+        <button
+          className="icon__box align-items-center justify-content-center d-flex"
+          onClick={handlePev}
+          type="button"
+        >
+          <CaretLeftFilled className="icon__custom" />
+        </button>
+
+        <div className="card__main ms-2">
+          <Slider ref={sliderRef} {...settings}>
+            {events.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </Slider>
         </div>
+
+        <button
+          className="icon__box align-items-center justify-content-center d-flex"
+          onClick={handleNext}
+          type="button"
+        >
+          <CaretRightFilled className="icon__custom" />
+        </button>
       </div>
-    </>
+    </div>
   );
 };
 

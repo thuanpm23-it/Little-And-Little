@@ -3,21 +3,12 @@
   src: url("./assets/fonts/iCielKoni.ttf") format("truetype");
 }
 
-.wrapper {
-  height: 1104px;
-  background-color: #f9b842;
-  border-radius: 20px;
+.bg {
+  background: #f9b842;
+  height: 1100px;
 }
 
-.nav-wrapper {
-  position: relative;
-  z-index: 10;
-}
-
-.main {
-  width: 91%;
-  height: 957px;
-  margin: -30px auto 0;
+.bg__main {
   background: linear-gradient(
     0deg,
     #ff8b2c 1.71%,
@@ -27,11 +18,18 @@
     #ffb600 96.65%
   );
   border-radius: 20px;
+  height: 960px;
+  width: 93%;
+  margin: -30px auto 0;
 }
 
-.input-item {
-  margin-bottom: 15px;
-  padding: 18px;
+.nav__box {
+  position: relative;
+  z-index: 10;
+}
+
+.input__item,
+.select__item {
   border-color: #fff;
   border-radius: 16px;
   background: var(--w, #fff);
@@ -43,22 +41,30 @@
   font-weight: 500;
 }
 
-.header-text {
-  color: var(--w, #fff);
-  font-family: iCiel Koni;
-  font-size: 80px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 80px;
-  padding-top: 70px;
-  margin-bottom: 50px;
+.input__item {
+  padding: 15px;
 }
 
-.input-row {
-  display: flex;
+.select__item {
+  padding: 17px;
+  appearance: none;
 }
 
-.button-item {
+.icon__box {
+  border: none;
+  background-color: #ffde32;
+  border-radius: 10px;
+  box-shadow: 0px 7px 0px #ffd27b;
+  color: white;
+  width: 60px;
+  height: 50px;
+  cursor: pointer;
+}
+.icon__custom {
+  font-size: 35px;
+}
+
+.button__item {
   background-color: #ff000a;
   border-radius: 10px;
   border: none;
@@ -70,34 +76,36 @@
   color: #fff;
 }
 
-.icon-button {
-  border: none;
-  background-color: #ffde32;
-  border-radius: 10px;
-  box-shadow: 0px 7px 0px #ffd27b;
-  color: white;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-}
-.icons {
-  font-size: 30px;
+.text__title {
+  color: var(--w, #fff);
+  font-family: iCiel Koni;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 80px;
 }
 
-.flag1-img {
-  position: absolute;
-  right: 0.5%;
-  width: 32%;
+.text__1 {
+  color: var(--text, #23221f);
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  opacity: 0.699999988079071;
 }
 
-.flag2-img {
-  position: absolute;
-  left: 0.5%;
-  top: 15.5%;
-  width: 32%;
+.tag__text {
+  color: var(--w, #fff);
+  font-family: iCiel Koni;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
 }
 
-.modal-t {
+.modal__text {
   color: var(--text, #23221f);
   font-family: Montserrat;
   font-size: 18px;
@@ -107,68 +115,14 @@
   opacity: 0.699999988079071;
 }
 
-@media only screen and (max-width: 1024px) {
-  .input-item {
-    padding: 17x;
-    font-size: 15px;
-  }
-
-  .icon-button {
-    width: 45px;
-    height: 45px;
-  }
-  .icons {
-    font-size: 25px;
-  }
-
-  .flag1-img {
-    position: absolute;
-    width: 32%;
-  }
-
-  .header-text {
-    font-size: 60px;
-    line-height: 50px;
-  }
-
-  .flag2-img {
-    position: absolute;
-
-    width: 32%;
-    top: 11%;
-  }
+.flag__img__1 {
+  position: absolute;
+  right: 0px;
+  width: 500px;
 }
-
-@media only screen and (max-width: 768px) {
-  .input-item {
-    margin-bottom: 15px;
-    padding: 15px;
-    font-size: 14px;
-  }
-
-  .icon-button {
-    width: 40px;
-    height: 40px;
-  }
-  .icons {
-    font-size: 20px;
-  }
-  .wrapper {
-    height: 110%;
-  }
-
-  .main {
-    height: 100%;
-    padding-bottom: 50px;
-  }
-
-  .header-text {
-    font-size: 50px;
-    line-height: 50px;
-  }
-
-  .flag1-img,
-  .flag2-img {
-    display: none;
-  }
+.flag__img__2 {
+  position: absolute;
+  left: 0px;
+  width: 500px;
+  top: 120px;
 }

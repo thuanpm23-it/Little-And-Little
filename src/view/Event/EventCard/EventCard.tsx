@@ -5,27 +5,25 @@ import { NavLink } from "react-router-dom";
 
 const EventCard = ({ event }: { event: any }) => {
   return (
-    <>
-      <div className="card">
-        <img src={event.img2} alt="Avatar" />
-        <div className="container">
-          <p className="card-text-1">{event.title}</p>
-          <p className="card-text-2">{event.location}</p>
-
-          <div className="card-row">
-            <img src={event.img4} alt="Icon" />
-            <p className="card-text-3">
-              {event.startDate} - {event.endDate}
-            </p>
-          </div>
-          <p className="card-text-4">{event.price} VNĐ</p>
-
-          <NavLink to={`/event/${event.id}`}>
-            <button className="button-item card-button-wh">Xem chi tiết</button>
-          </NavLink>
+    <div className="card card__custom rounded-4">
+      <img src={event.img2} className="card-img-top rounded-top-4 " alt="..." />
+      <div className="card-body ms-1">
+        <h5 className="title__custom">{event.title}</h5>
+        <p className="location__custom">{event.location}</p>
+        <div className="date__custom d-flex align-items-center">
+          <img src={event.img4} alt="Icon" />
+          <span className="card__text ms-1">
+            {event.startDate} - {event.endDate}
+          </span>
         </div>
+        <p className="price__custom">{event.price} VNĐ</p>
+        <NavLink to={`/event/${event.id}`}>
+          <button className="button__item card__button w-75 mb-3">
+            Xem chi tiết
+          </button>
+        </NavLink>
       </div>
-    </>
+    </div>
   );
 };
 

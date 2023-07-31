@@ -5,30 +5,40 @@ import { images } from "../../assets/images/images";
 
 const NavBar: React.FC = () => {
   return (
-    <div className="header-box">
-      <div className="logo">
-        <img src={images[19].navbarLogo} alt="Logo" />
+    <>
+      <div className="container-fluid bg__nav">
+        <div className="container">
+          <div className="row py-3 ">
+            <div className="col ms-4">
+              <img src={images[19].navbarLogo} alt="" />
+            </div>
+            <div className="col navbar-expand d-flex justify-content-center align-items-center nav__ds">
+              <ul className="navbar-nav navbar__custom">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/home">
+                    Trang chủ
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/event">
+                    Sự kiện
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/contact">
+                    Liên hệ
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+            <div className="col d-flex align-items-center justify-content-center">
+              <img src={images[20].navbarIcon} alt="" />
+              <i className="ms-1 nav__ds">01290423423</i>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="nav-box">
-        <NavLink to="/home" className="header-nav">
-          Trang chủ
-        </NavLink>
-        <NavLink to="/event" className="header-nav">
-          Sự kiện
-        </NavLink>
-        <NavLink to="/contact" className="header-nav">
-          Liên hệ
-        </NavLink>
-      </div>
-
-      <div className="phone-box">
-        <i className="phone-icon">
-          <img src={images[20].navbarIcon} alt="icon" />
-        </i>
-        <i className="header-nav">0123456789</i>
-      </div>
-    </div>
+    </>
   );
 };
 

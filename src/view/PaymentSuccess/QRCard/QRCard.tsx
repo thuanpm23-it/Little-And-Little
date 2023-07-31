@@ -9,13 +9,13 @@ interface QRCardProps {
 
 const QRCard: React.FC<QRCardProps> = ({ ticket }) => {
   return (
-    <div className="paysuccess-qr-card">
-      <QRCode value={ticket.qrCodeValue} className="paysucces-qr-img" />
-      <p className="paysucces-qr-title">{ticket.ticketId}</p>
-      <p className="paysucces-qr-text-1">VÉ CỔNG</p>
-      <p className="paysucces-qr-text-2">---</p>
-      <p className="paysucces-qr-text-3">Ngày sử dụng: {ticket.ticketDate}</p>
-      <img src={ticket.ticketTick} alt="QR" className="paysuccess-qr-tick" />
+    <div className="qr__card bg-white text-center px-4 pt-4 pb-3 rounded-4 ms-3">
+      <QRCode value={ticket.qrCodeValue} className="qr__code" />
+      <p className="qr__title pt-3">{ticket.ticketId}</p>
+      <p className="qr__text__1">VÉ CỔNG</p>
+      <p className="qr__text__2">---</p>
+      <p className="qr__text__3">Ngày sử dụng: {ticket.ticketDate}</p>
+      <img src={ticket.ticketTick} alt="QR" className="qr__tick" />
     </div>
   );
 };

@@ -71,11 +71,11 @@ const SuccessPage: React.FC = () => {
       saveAs(content, "qr_cards.zip");
     });
   };
-  const previous = () => {
+  const handlePrev = () => {
     sliderRef.current?.slickPrev();
   };
 
-  const next = () => {
+  const handleNext = () => {
     sliderRef.current?.slickNext();
   };
 
@@ -123,166 +123,81 @@ const SuccessPage: React.FC = () => {
   const [isEmailModalVisible, setIsEmailModalVisible] = useState(false);
   const [emailRecipient, setEmailRecipient] = useState("");
 
-  const handleSendEmail = async () => {
-    setIsEmailModalVisible(false);
-    const sendMailImages: any[] = [];
+  const handleSendEmail = async () => {};
 
-    for (let i = 0; i < tickets.length; i++) {
-      const qrCardElement = document.querySelector(
-        `.slick-slide[data-index="${i}"]`
-      ) as HTMLElement;
-
-      const canvas = await html2canvas(qrCardElement);
-      const blob = await new Promise((resolve) => {
-        canvas.toBlob((blob) => resolve(blob));
-      });
-
-      if (blob) {
-        sendMailImages.push(blob);
-      }
-    }
-
-    // const promises = tickets.map(async (ticket, i) => {
-    //   const qrCardElement = document.querySelector(
-    //     `.slick-slide[data-index="${i}"]`
-    //   ) as HTMLElement;
-
-    //   const canvas = await html2canvas(qrCardElement);
-    //   return new Promise((resolve) => {
-    //     canvas.toBlob((blob) => resolve(blob));
-    //   });
-    // });
-
-    // const blobs = await Promise.all(promises);
-
-    // sendMailImages.push(...blobs);
-
-    if (sendMailImages.length > 0) {
-      sendEmail(sendMailImages);
-    }
-  };
-
-  const sendEmail = async (images: any) => {
-    // const recipient = window.prompt("Nhập địa chỉ email người nhận:");
-
-    if (emailRecipient) {
-      if (images.length > 0) {
-        zip = new JSZip();
-        folder = zip.folder("qr_cards");
-
-        images.forEach((image: any, index: any) => {
-          const fileName = `qr_card_${index + 1}.png`;
-          folder!.file(fileName, image);
-        });
-
-        zip.generateAsync({ type: "blob" }).then(async (content) => {
-          const formData = new FormData();
-          formData.append("to", emailRecipient);
-          formData.append("subject", "Gửi bạn danh sách vé");
-          formData.append("text", "Hãy tải về để xem danh sách vé:");
-          formData.append("attachment", content, "qr_cards.zip");
-
-          try {
-            const response = await axios.post(
-              "http://localhost:8000/send-email",
-              formData,
-              {
-                headers: {
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            );
-
-            const data = response.data;
-            console.log(data.message);
-
-            Modal.success({
-              content: "Vé đã gửi qua email của bạn.",
-            });
-          } catch (error) {
-            console.error("Đã xảy ra lỗi:", error);
-
-            Modal.error({
-              content: "Chưa gửi được vé! Hãy kiểm tra lại email.",
-            });
-          }
-        });
-      } else {
-        console.log("Không có hình ảnh nào để gửi");
-      }
-      setEmailRecipient("");
-    }
-  };
+  const sendEmail = async (images: any) => {};
 
   if (!tickets || !tickets.length) {
     return (
-      <div className="paysuccess-header-box">
-        <div className="header-text-box">
-          <div className="header-text">Không tìm thấy thanh toán!</div>
+      <div className="container">
+        <div className="row text-center pt-5">
+          <div className="text__title">Không tìm thấy thanh toán!</div>
         </div>
       </div>
     );
   }
 
   return (
-    <>
-      <div className="paysuccess-header-box">
-        <div className="header-text-box">
-          <div className="header-text">Thanh toán thành công</div>
-        </div>
+    <div className="container">
+      <div className="row text-center pt-5">
+        <div className="text__title">Thanh toán thành công</div>
       </div>
-      <div className="paysuccess-main-box">
-        <div className="paysuccess-tab-box">
-          <div className="paysuccess-tab-box-border">
-            <div className="paysuccess-tab-box-main">
-              <button
-                className="icon-button button-previous"
-                onClick={previous}
-              >
-                <CaretLeftFilled className="icons" />
-              </button>
-              <div className="paysuccess-card" ref={qrCardsRef}>
-                <Slider ref={sliderRef} {...settings}>
-                  {tickets.map((ticket) => (
-                    <QRCard key={ticket.ticketId} ticket={ticket} />
-                  ))}
-                </Slider>
-              </div>
-              <button className="icon-button" onClick={next}>
-                <CaretRightFilled className="icons" />
-              </button>
+      <div className="success__box mt-5">
+        <div className="success__border">
+          <div className="mt-5 d-flex align-items-center justify-content-center">
+            <button
+              className="icon__box align-items-center justify-content-center d-flex"
+              onClick={handlePrev}
+              type="button"
+            >
+              <CaretLeftFilled className="icon__custom" />
+            </button>
+
+            <div className="success__main me-3" ref={qrCardsRef}>
+              <Slider ref={sliderRef} {...settings}>
+                {tickets.map((ticket) => (
+                  <QRCard key={ticket.ticketId} ticket={ticket} />
+                ))}
+              </Slider>
             </div>
-            <div className="paysuccess-main-bottom">
-              <p className="paysuccess-text-start">
-                Số lượng vé: {tickets.length}
-              </p>
-              <p className="paysuccess-text-end">
-                Trang {currentPage}/{totalPages}
-              </p>
-            </div>
+            <button
+              className="icon__box align-items-center justify-content-center d-flex"
+              onClick={handleNext}
+              type="button"
+            >
+              <CaretRightFilled className="icon__custom" />
+            </button>
+          </div>
+          <div className="d-flex justify-content-between mx-95 mt-4">
+            <span className="qr__quantity">Số lượng vé: {tickets.length}</span>
+            <span className="qr__number__page">
+              Trang {currentPage}/{totalPages}
+            </span>
           </div>
         </div>
-        <div className="paysuccess-picture">
-          <img src={images[17].successImg1} alt="Avatar4" />
-        </div>
       </div>
-      <div className="paysuccess-bottom-box">
+
+      <div className="success__button__box text-center mt-4">
         <button
-          type="submit"
-          className="button-item paysuccess-button-wh ms"
+          className="button__item success__button me-4"
           onClick={handleDownload}
         >
           Tải về
         </button>
         <button
-          type="submit"
-          className="button-item paysuccess-button-wh"
+          className="button__item success__button"
           onClick={() => setIsEmailModalVisible(true)}
         >
           Gửi Email
         </button>
       </div>
-
+      <div>
+        <img
+          src={images[17].successImg1}
+          alt="Avatar3"
+          className="success__img"
+        />
+      </div>
       <Modal
         title="Nhập địa chỉ email người nhận:"
         open={isEmailModalVisible}
@@ -290,12 +205,13 @@ const SuccessPage: React.FC = () => {
         onCancel={() => setIsEmailModalVisible(false)}
       >
         <Input
-          type="text"
+          type="email"
           value={emailRecipient}
           onChange={(e) => setEmailRecipient(e.target.value)}
+          required
         />
       </Modal>
-    </>
+    </div>
   );
 };
 

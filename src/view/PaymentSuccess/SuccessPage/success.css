@@ -1,26 +1,18 @@
-.paysuccess-header-box {
-  text-align: center;
-}
-.paysuccess-main-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 50px;
-}
-.paysuccess-tab-box {
+.success__box {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 85%;
-  height: 637px;
+  width: 1200px;
+  height: 585px;
   fill: #fde8b3;
   background-color: #fde8b3;
   border-radius: 30px;
+  margin-left: 100px;
 }
 
-.paysuccess-tab-box-border {
-  width: 97.5%;
-  height: 612px;
+.success__border {
+  width: 1180px;
+  height: 565px;
   border-style: dashed;
   background-color: #fff6d4;
   border-width: 3px;
@@ -28,18 +20,16 @@
   border-radius: 30px;
 }
 
-.paysuccess-card {
+.success__main {
   width: 85%;
 }
-.paysuccess-main-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
+
+.mx-95 {
+  margin-left: 95px;
+  margin-right: 95px;
 }
 
-.paysuccess-text-start {
-  margin-left: 9.5%;
+.qr__quantity {
   color: var(--text, #23221f);
   font-family: Montserrat;
   font-size: 18px;
@@ -47,8 +37,8 @@
   font-weight: 500;
   line-height: 30px;
 }
-.paysuccess-text-end {
-  margin-right: 8%;
+
+.qr__number__page {
   color: var(--text, #23221f);
   font-family: Montserrat;
   font-size: 16px;
@@ -58,55 +48,15 @@
   opacity: 0.5;
 }
 
-.paysuccess-button-wh {
+.success__button {
   width: 160px;
   height: 40px;
   font-size: 18px;
 }
 
-.paysuccess-picture {
+.success__img {
   position: absolute;
-  left: -60px;
-  top: 45%;
-}
-.ms {
-  margin-right: 15px;
-}
-.paysuccess-bottom-box {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.paysuccess-tab-box-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin-top: 3%;
-}
-
-@media only screen and (max-width: 1024px) {
-  .paysuccess-picture {
-    display: none;
-  }
-  .paysuccess-main-box {
-    margin-left: 0;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .paysuccess-picture {
-    display: none;
-  }
-  .paysuccess-tab-box {
-    width: 90%;
-  }
-  .paysuccess-tab-box-border {
-    width: 95%;
-    height: 97%;
-  }
-
-  .paysuccess-button-wh {
-    width: 120px;
-  }
+  width: 270px;
+  top: 370px;
+  left: 0px;
 }

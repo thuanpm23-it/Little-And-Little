@@ -24,55 +24,52 @@ const EventDetailPage: React.FC = () => {
 
   if (!event) {
     return (
-      <div className="eventdetail-header-box">
-        <div className="header-text-box">
-          <div className="header-text">Sự kiện không tồn tại!</div>
+      <div className="container">
+        <div className="row text-center pt-5">
+          <div className="text__title">Sự kiện không tồn tại!</div>
         </div>
       </div>
     );
   }
-
   return (
-    <>
-      <div className="eventdetail-header-box">
-        <img src={images[10].eventImg1} alt="Flag1" className="flag1-img" />
-        <div className="header-text-box">
-          <div className="header-text">{event.title}</div>
-        </div>
-        <img src={images[11].eventImg2} alt="Flag2" className="flag2-img" />
+    <div className="container">
+      <img src={images[10].eventImg1} alt="Flag1" className="flag__img__1" />
+      <div className="row text-center pt-5 pb-5">
+        <div className="text__title">{event.title}</div>
       </div>
-      <div className="eventdetail-main-box">
-        <div className="eventdetail-main">
-          <div className="eventdetail-main-border">
-            <div className="eventdetail-col-1">
-              <img src={event.img1} alt="Detail1" className="img-main" />
-              <div className="eventdetail-time">
-                <img src={event.img4} alt="Icon" />
-                <p className="eventdetail-time-text">
+      <img src={images[11].eventImg2} alt="Flag2" className="flag__img__2" />
+      <div className="row mt-5">
+        <div className="event__box">
+          <div className="event__border d-flex px-4 pt-5">
+            <div className="box__1 me-3">
+              <img src={event.img1} alt="" className="event__img__1" />
+              <div className="d-flex align-items-center mt-3">
+                <img src={event.img4} alt="" />
+                <span className="event__date ms-1">
                   {event.startDate} - {event.endDate}
-                </p>
+                </span>
               </div>
-              <p className="eventdetail-address">{event.location}</p>
-              <p className="eventdetail-price">{event.price} VNĐ</p>
+              <p className="event__location mt-3">{event.location}</p>
+              <p className="event__price">{event.price} VNĐ</p>
             </div>
-            <div className="eventdetail-col-2">
-              <p className="eventdetail-text">
+            <div className="box__2 me-3">
+              <p className="event__text">
                 <span>{event.descriptionTitle} </span>
                 {event.description1}
               </p>
             </div>
-            <div className="eventdetail-col-3">
-              <img src={event.img2} alt="Detail2" className="img-support" />
-              <p className="eventdetail-text">{event.description2}</p>
+            <div className="box__3 me-3">
+              <img src={event.img3} alt="" className="rounded-3" />
+              <p className="event__text mt-3">{event.description2}</p>
             </div>
-            <div className="eventdetail-col-4">
-              <p className="eventdetail-text">{event.description3}</p>
-              <img src={event.img3} alt="Detail2" className="img-support" />
+            <div className="box__4">
+              <p className="event__text mb-3">{event.description2}</p>
+              <img src={event.img2} alt="" className="rounded-3" />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

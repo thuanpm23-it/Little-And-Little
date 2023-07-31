@@ -1,14 +1,4 @@
-.paysuccess-qr-card {
-  width: 220px;
-  height: 500px;
-  border-radius: 16px;
-  background: #fff;
-  text-align: center;
-}
-.paysucces-qr-img {
-  padding-top: 30px;
-}
-.paysucces-qr-title {
+.qr__title {
   color: #000;
   font-family: Montserrat;
   font-size: 28px;
@@ -17,7 +7,7 @@
   line-height: normal;
 }
 
-.paysucces-qr-text-1 {
+.qr__text__1 {
   color: var(--yellow-1, #ffc226);
   font-family: Montserrat;
   font-size: 20px;
@@ -26,7 +16,7 @@
   line-height: normal;
 }
 
-.paysucces-qr-text-2 {
+.qr__text__2 {
   color: #000;
   font-family: Montserrat;
   font-size: 20px;
@@ -35,7 +25,7 @@
   line-height: normal;
 }
 
-.paysucces-qr-text-3 {
+.qr__text__3 {
   color: var(--text, #23221f);
   font-family: Montserrat;
   font-size: 14px;
@@ -44,6 +34,15 @@
   line-height: 26px;
 }
 
-.paysuccess-qr-tick {
-  margin-left: 40%;
+.qr__code {
+  margin-left: 13px;
+}
+
+.qr__tick {
+  margin-left: 70px;
+}
+
+.qr__card {
+  width: 235px;
+  height: 440px;
 }

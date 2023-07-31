@@ -1,91 +1,48 @@
-.card {
-  transition: 0.3s;
-  width: 95%;
-  height: 450px;
-  border-radius: 20px;
-  background: #fff;
+.card__button {
+  height: 40px;
+  font-size: 18px;
 }
 
-.card img {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  width: 100%;
-  height: 200px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.container {
-  padding: 2px 25px;
-}
-
-.card-text-1 {
+.title__custom {
   color: var(--text, #23221f);
   font-family: Montserrat;
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-bottom: -15px;
-  margin-top: 0px;
 }
 
-.card-text-2 {
+.location__custom {
   color: #6c7272;
   font-family: Montserrat;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 25px;
-  margin-bottom: -5px;
 }
 
-.card-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: -40px;
-}
-
-.card-row img {
-  width: 24px;
-  height: 24px;
-}
-
-.card-text-3 {
+.card__text {
   color: #444;
   font-family: Montserrat;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
-  margin-left: 5px;
 }
 
-.card-text-4 {
+.price__custom {
   color: #fa7d09;
   font-family: Montserrat;
   font-size: 30px;
   font-style: normal;
   font-weight: 700;
   line-height: 48px;
-  margin-bottom: 15px;
 }
 
-.card-button-wh {
-  width: 200px;
-  height: 40px;
-  font-size: 18px;
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-@media only screen and (max-width: 768px) {
-  .card-button-wh {
-    width: 80%;
-    font-size: 16px;
-  }
-
-  .card-text-4 {
-    font-size: 25px;
-  }
+.card__custom {
+  width: 280px;
 }

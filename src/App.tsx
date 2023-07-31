@@ -5,11 +5,11 @@ import NavBar from "./layout/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="wrapper">
-      <div className="nav-wrapper">
+    <div className="bg">
+      <div className="nav__box">
         <NavBar />
       </div>
-      <div className="main">
+      <div className="bg__main">
         <Routers />
       </div>
     </div>
