@@ -20,15 +20,15 @@ const SuccessPage: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
   const { paymentId } = useParams();
   const qrCardsRef = useRef<HTMLDivElement>(null);
-
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-
+  const [isEmailModalVisible, setIsEmailModalVisible] = useState(false);
+  const [emailRecipient, setEmailRecipient] = useState("");
   const tickets = useSelector((state: RootState) => state.success.tickets);
   const dispatch: AppDispatch = useDispatch();
 
   let folder: JSZip | null = new JSZip();
   let zip: JSZip | null = new JSZip();
+
   useEffect(() => {
     if (paymentId) {
       dispatch(fetchTickets(paymentId));
@@ -79,10 +79,8 @@ const SuccessPage: React.FC = () => {
     sliderRef.current?.slickNext();
   };
 
-  useEffect(() => {
-    setTotalPages(Math.ceil(tickets.length / 4));
-  }, [tickets]);
-
+  const totalPages = Math.ceil(tickets.length / 4);
+  
   const handleSlideChange = (currentSlide: number) => {
     setCurrentPage(Math.ceil(currentSlide / 4) + 1);
   };
@@ -120,12 +118,80 @@ const SuccessPage: React.FC = () => {
     ],
   };
 
-  const [isEmailModalVisible, setIsEmailModalVisible] = useState(false);
-  const [emailRecipient, setEmailRecipient] = useState("");
 
-  const handleSendEmail = async () => {};
+  const handleSendEmail = async () => {
+    setIsEmailModalVisible(false);
+    const sendMailImages: any[] = [];
 
-  const sendEmail = async (images: any) => {};
+    for (let i = 0; i < tickets.length; i++) {
+      const qrCardElement = document.querySelector(
+        `.slick-slide[data-index="${i}"]`
+      ) as HTMLElement;
+
+      const canvas = await html2canvas(qrCardElement);
+      const blob = await new Promise((resolve) => {
+        canvas.toBlob((blob) => resolve(blob));
+      });
+
+      if (blob) {
+        sendMailImages.push(blob);
+      }
+    }
+
+    if (sendMailImages.length > 0) {
+      sendEmail(sendMailImages);
+    }
+  };
+
+  const sendEmail = async (images: any) => {
+    if (emailRecipient) {
+      if (images.length > 0) {
+        zip = new JSZip();
+        folder = zip.folder("qr_cards");
+
+        images.forEach((image: any, index: any) => {
+          const fileName = `qr_card_${index + 1}.png`;
+          folder!.file(fileName, image);
+        });
+
+        zip.generateAsync({ type: "blob" }).then(async (content) => {
+          const formData = new FormData();
+          formData.append("to", emailRecipient);
+          formData.append("subject", "GỬI BẠN DANH SÁCH VÉ");
+          formData.append("text", "Hãy tải về để xem vé.");
+          formData.append("attachment", content, "qr_cards.zip");
+
+          try {
+            const response = await axios.post(
+              "http://localhost:8000/send-email",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            );
+
+            const data = response.data;
+            console.log(data.message);
+
+            Modal.success({
+              content: "Vé đã gửi qua email của bạn.",
+            });
+          } catch (error) {
+            console.error("Đã xảy ra lỗi:", error);
+
+            Modal.error({
+              content: "Chưa gửi được vé! Hãy kiểm tra lại email.",
+            });
+          }
+        });
+      } else {
+        console.log("Không có hình ảnh nào để gửi");
+      }
+      setEmailRecipient("");
+    }
+  };
 
   if (!tickets || !tickets.length) {
     return (

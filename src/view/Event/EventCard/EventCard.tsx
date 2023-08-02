@@ -6,7 +6,11 @@ import { NavLink } from "react-router-dom";
 const EventCard = ({ event }: { event: any }) => {
   return (
     <div className="card card__custom rounded-4">
-      <img src={event.img2} className="card-img-top rounded-top-4 " alt="..." />
+      <img
+        src={event.img2}
+        className="card-img-top card__img rounded-top-4 "
+        alt="..."
+      />
       <div className="card-body ms-1">
         <h5 className="title__custom">{event.title}</h5>
         <p className="location__custom">{event.location}</p>

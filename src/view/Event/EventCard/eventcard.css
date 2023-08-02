@@ -46,3 +46,8 @@
 .card__custom {
   width: 280px;
 }
+
+.card__img {
+  width: 278px;
+  height: 201px;
+}

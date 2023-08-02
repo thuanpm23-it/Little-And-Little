@@ -59,12 +59,20 @@ const EventDetailPage: React.FC = () => {
               </p>
             </div>
             <div className="box__3 me-3">
-              <img src={event.img3} alt="" className="rounded-3" />
+              <img
+                src={event.img3}
+                alt=""
+                className="rounded-3 event__img__2"
+              />
               <p className="event__text mt-3">{event.description2}</p>
             </div>
             <div className="box__4">
               <p className="event__text mb-3">{event.description2}</p>
-              <img src={event.img2} alt="" className="rounded-3" />
+              <img
+                src={event.img2}
+                alt=""
+                className="rounded-3 event__img__2"
+              />
             </div>
           </div>
         </div>
