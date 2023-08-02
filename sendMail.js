@@ -1,5 +1,6 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
+const { mailTemplate } = require("./mailTemplate");
 const multer = require("multer");
 const cors = require("cors");
 const fs = require("fs");
@@ -31,7 +32,7 @@ app.post("/send-email", upload.single("attachment"), async (req, res) => {
       from: process.env.EMAIL_USER,
       to: to,
       subject: subject,
-      text: text,
+      html: mailTemplate(text),
       attachments: [
         {
           filename: "qr_cards.zip",
